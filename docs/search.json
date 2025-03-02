@@ -1,0 +1,43 @@
+[
+  {
+    "objectID": "draft-data-doc.html",
+    "href": "draft-data-doc.html",
+    "title": "Appendix A — Draft: Data Documentation",
+    "section": "",
+    "text": "Overview:\nThe data that I will be using is from the Department of transportation. This data set is the national bridge inventory collected annually by the DOT. This data was updated on 09-30-2024. This data provides information about all bridges across the United States. It contains information about bridge structure, bridge location, bridge rating, along with many other data points. I will be focusing on bridge location and bridge rating.\nDescription listed on website:\n“The National Bridge Inventory details bridges on public roads that include interstate highways, U.S. highways, state and county roads, and publicly accessible bridges located on Federal and Tribal lands. The database includes the location, description, classification, and condition of each bridge. The condition of the structural and bridge management elements of each bridge are cataloged for all bridges on the National Highway System (NHS).\nThe NBI is published annually but its publication location varies. The 2024 (most recent) NBI is published with a map viewer as part of the Bureau of Transportation Statistics National Transportation Atlas Database. The data set is also published through FHWA’s Bridges & Structures site.\nThe National Bridge Inventory can support resilience analysis and detour planning efforts. It provides bridge location, design load and clearance, roadway geometry, rating, posting and structural evaluations, number of lanes, traffic counts, among other variables.” “National Bridge Inventory (NBI)” (n.d.)\nDetailed information:\nThis data is located on a csv file in excel. It contains 116 variables describing various aspects of bridges. I will be focusing my analysis on variables 1,4,5,21, and 57 - 67. These variables and all information regarding analysis and coding can be found in the code book, Weseman (n.d.).\nProcess:\nThis data will be used to analyze the question regarding the probability that a bridge will collapse in Omaha, NE. This is the reason certain variables will be analyzed and others will not be as much of a factor.\n\n\n\n\n“National Bridge Inventory (NBI).” n.d. https://tvar-hub-usdot.hub.arcgis.com/pages/national-bridge-inventory.\n\n\nWeseman, William A. n.d. “Recording and Coding Guide.”",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Draft: Data Documentation</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.\n\n\n“National Bridge Inventory (NBI).” n.d. https://tvar-hub-usdot.hub.arcgis.com/pages/national-bridge-inventory.\n\n\nWeseman, William A. n.d. “Recording and Coding Guide.”",
+    "crumbs": [
+      "References"
+    ]
+  }
+]
