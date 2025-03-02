@@ -1,3 +1,23 @@
 ---
 title: "Draft: Data Documentation"
 ---
+
+Overview:
+
+The data that I will be using is from the Department of transportation. This data set is the national bridge inventory collected annually by the DOT. This data was updated on 09-30-2024. This data provides information about all bridges across the United States. It contains information about bridge structure, bridge location, bridge rating, along with many other data points. I will be focusing on bridge location and bridge rating.
+
+Description listed on website:
+
+"The National Bridge Inventory details bridges on public roads that include interstate highways, U.S. highways, state and county roads, and publicly accessible bridges located on Federal and Tribal lands. The database includes the location, description, classification, and condition of each bridge. The condition of the structural and bridge management elements of each bridge are cataloged for all bridges on the National Highway System (NHS).
+
+The NBI is published annually but its publication location varies. The 2024 (most recent) NBI is published with a map viewer as part of the Bureau of Transportation Statistics National Transportation Atlas Database. The data set is also published through FHWA’s Bridges & Structures site.
+
+The National Bridge Inventory can support resilience analysis and detour planning efforts. It provides bridge location, design load and clearance, roadway geometry, rating, posting and structural evaluations, number of lanes, traffic counts, among other variables." @NationalBridgeInventory
+
+Detailed information:
+
+This data is located on a csv file in excel. It contains 116 variables describing various aspects of bridges. I will be focusing my analysis on variables 1,4,5,21, and 57 - 67. These variables and all information regarding analysis and coding can be found in the code book, @wesemanRecordingCodingGuide.
+
+Process:
+
+This data will be used to analyze the question regarding the probability that a bridge will collapse in Omaha, NE. This is the reason certain variables will be analyzed and others will not be as much of a factor.
