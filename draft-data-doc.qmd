@@ -4,7 +4,7 @@ title: "Draft: Data Documentation"
 
 Overview:
 
-The data that I will be using is from the Department of transportation. This data set is the national bridge inventory collected annually by the DOT. This data was updated on 09-30-2024. This data provides information about all bridges across the United States. It contains information about bridge structure, bridge location, bridge rating, along with many other data points. I will be focusing on bridge location and bridge rating.
+The data that I will be using is from the Department of transportation. This data set is the national bridge inventory collected annually by the DOT. This data was updated on 09-30-2024. This data provides information about all bridges that are on public roads and span over 20 feet across the United States. It contains information about bridge structure, bridge location, bridge rating, along with many other data points. I will be focusing on bridge location, bridge rating, along with daily traffic load.
 
 Description listed on website:
 
@@ -16,8 +16,8 @@ The National Bridge Inventory can support resilience analysis and detour plannin
 
 Detailed information:
 
-This data is located on a csv file in excel. It contains 116 variables describing various aspects of bridges. I will be focusing my analysis on variables 1,4,5,21, and 57 - 67. These variables and all information regarding analysis and coding can be found in the code book, @wesemanRecordingCodingGuide.
+This data is located on a csv file in excel. It contains 116 variables describing various aspects of bridges. I will be focusing my analysis on variables 1,4,5,21, 28-29, 57 - 67,109,113-115. These variables and all information regarding analysis and coding can be found in the code book, @wesemanRecordingCodingGuide.
 
 Process:
 
-This data will be used to analyze the question regarding the probability that a bridge will collapse in Omaha, NE. This is the reason certain variables will be analyzed and others will not be as much of a factor.
+This data will be used to analyze the question regarding the probability that a bridge will collapse in Omaha, NE. This is the reason certain variables will be analyzed and others will not be as much of a factor. The factors that I will use to make this decision will be location of bridge, amount of lanes, amount of traffic, bridge ratings, daily truck traffic, etc. All of this information and more can be found on the NBI website and data set.
