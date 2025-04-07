@@ -1,3 +1,11 @@
 ---
 title: "Draft: Intro/Conclusions"
 ---
+
+# Introduction
+
+Have you ever been driving over a bridge and wondering how stable it is. This is a question that has created a lot of buzz recently especially with the state of the infrastructure in the United States. The question of interest is, what is the chance that you are driving over a bridge at risk of collapse in Omaha, NE. This question will be discused and analysed using the National Bridge Inventory data set. This data set is full of information about all federal, state, and local bridges in the United States of America including Omaha, NE. To analyze this data variables will be selected and there will be a criterion for bridge collapsing created using knowledge of variables. This will allow us to formulate a percentage of bridges that are at risk of collapse according to the criterion created.
+
+# Conclusion
+
+When we look at the percents data set we created we can see that there are 2.5% of bridges in Omaha, NE at risk of collapse. This is based on the National Bridge Inventory data from 2024. This result is based heavily on the variables that were selected to deduce which bridges would be a risk of collapse, if chosen different could have lead to different results. Given our variable selection as a limitation we also have the fact that a lot of variables were coded incorrectly leading to confusing interpretation of variables. Finally I feel that lack of a clear criterion based on the data at hand for bridge collapsing could lead to results that are very unstable. The results from this analysis despite all of the restrictions yield a result that tells the percent chance you are crossing a bridge at risk of collapse. The future research related to this topic could be focused on creating a criterion for bridges at risk of collapse.
