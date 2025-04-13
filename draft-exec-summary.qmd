@@ -1,3 +1,18 @@
 ---
 title: "Draft: Executive Summary"
 ---
+This analysis examines the risk of bridge collapse in Omaha, NE, using data from the NTAD
+National Bridge Inventory. The data set was filtered to focus on bridges within Nebraska and more specifically Omaha. The results show that approximately 20% of the bridges in Omaha are
+categorized as "high risk," meaning they have low structural condition and inventory ratings,
+though they are not at immediate risk of collapse. About 2.4% of bridges are identified as being
+in a state where collapse is a high risk, due to higher traffic. A smaller portion, 0.15% of
+bridges, are at the most risk, these are the most urgent cases with severe degradation.
+
+Given these findings, it is clear that Omaha, NE needs to invest in infrastructure improvement.
+Local and state government need to take action by improving overall bridge structural condition
+starting with the bridges in the highest risk category. The traffic patterns of the city should
+also be analyzed to understand which bridges pose the most risk to commuters on a daily basis.
+The public can also help this issue by creating awareness around the lack of care into the
+infrastructure of the city of Omaha.
+
+
