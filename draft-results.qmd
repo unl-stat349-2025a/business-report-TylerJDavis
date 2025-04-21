@@ -5,67 +5,56 @@ title: "Draft: Results"
 The data set that was used to conduct the analysis on percent chance a bridge collapses in Omaha, NE was the NTAD National Bridge Inventory,. This data set was filtered to contain all bridges in Iowa and Nebraska, it was then filtered again to focus in on the Omaha area. This was done by filter statements in R, using state codes, latitudes, and longitudes.
 
 ```{r}
-data <- read.csv("NTAD_National_Bridge_Inventory.csv")
-cols <- data.frame(colnames(data))
-
-library(dplyr)
 library(tidyverse)
-
-new_dat <- data %>%
-  filter(!is.na(STATE_CODE_001) & as.numeric(STATE_CODE_001) %in% c(19, 31))
-
-# Define bounding box
-lat_min <- 41.0
-lat_max <- 41.5
-lon_min <- 96.2
-lon_max <- 95.8
-
-new_dat$LAT_016 <- as.numeric(new_dat$LAT_016) / 1e6
-new_dat$LONG_017 <- as.numeric(new_dat$LONG_017) / 1e6
-
-# Filter the dataset
-omaha_bridges <- new_dat %>%
-  filter(LAT_016 >= lat_min & LAT_016 <= lat_max &
-           LONG_017 >= lon_max & LONG_017 <= lon_min)
-
-
+library(dplyr)
+library(psych)
+omaha_bridges <- read.csv("data_readr.csv")
+colname <- data.frame(colnames(omaha_bridges))
 
 fil_dat <- omaha_bridges %>%
-  select(c(1,2,5,15,21,25, 28:29,31:32, 68:77,88,103,107,112,116, 122:125))
+  select(c(1,2,5,15,21,22,25, 28:29,31:32, 68:77,88,103,107,112,116, 122:125))
 col <- data.frame(colnames(fil_dat))
+bridge_desc <- describe(fil_dat)
+hist(fil_dat$ADT_029)
+hist(fil_dat$OPERATING_RATING_064)
+hist(fil_dat$INVENTORY_RATING_066)
 
+library(ggplot2)
+ggplot(fil_dat,aes(x = DECK_COND_058)) + geom_bar()
+ggplot(fil_dat,aes(x = BRIDGE_CONDITION)) + geom_bar()
 fil_dat <- fil_dat %>%
   mutate(across(everything(), ~ ifelse(. == "N", NA, .)))
 
-filtered <- fil_dat %>%
-  # Group by OBJECTID first
-  group_by(OBJECTID) %>%
-  summarise(
-    avg_rate = mean(
-      c(
-        as.numeric(DECK_COND_058), 
-        as.numeric(SUPERSTRUCTURE_COND_059), 
-        as.numeric(SUBSTRUCTURE_COND_060),
-        as.numeric(CULVERT_COND_062),
-        as.numeric(CHANNEL_COND_061),
-        as.numeric(STRUCTURAL_EVAL_067)
-      ), 
-      na.rm = TRUE
-    ),
-    
-    avg_inv_op = mean(
-      c(as.numeric(OPERATING_RATING_064), as.numeric(INVENTORY_RATING_066)),
-      na.rm = TRUE
-    ),
-    avg_traffic = ADT_029,
-    percent_truck = PERCENT_ADT_TRUCK_109,
+bridge_cond <- fil_dat %>%
+ filter(
+   BRIDGE_CONDITION == "P"
+ )
+
+
+high_traffic <- bridge_cond %>%
+  filter (
+    ADT_029 > 5000 & TRAFFIC_LANES_ON_028A > 2
   )
-    groups = "drop"  # Drops the grouping after summarizing
-  
 
 
 library(psych)
-describe(filtered)
+describe(high_traffic)
+library(maps)
+# Get state map data (or use 'county' for more detail)
+us_map <- map_data("state")
+
+# Plot the data
+ggplot() +
+  geom_polygon(data = us_map, aes(x = long, y = lat, group = group),
+               fill = "blue", color = "white") +
+  geom_point(data = bridge_cond, aes(x = LONG_017, y = LAT_016),
+             color = "darkred", size = 2.5, alpha = 0.8) +
+  coord_fixed(xlim = c(96.1, 95.8), ylim = c(41.2, 41.35)) +
+  labs(title = "Mapped Coordinates in Omaha", x = "Longitude", y = "Latitude") +
+  theme_minimal()
+
+
+
 ```
 
 Here we are given a summary of the data and each variable and some descriptions attached. This data was then used to break down which bridges have the highest chance of collapsing in Omaha, NE. The criteria for collapsing was based on a variety of factors in the data set that have been filtered in R. This filtering allowed me to see which bridges have the lowest quality structure, maintenance, and most traffic.
