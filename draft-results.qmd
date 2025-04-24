@@ -5,30 +5,42 @@ title: "Draft: Results"
 The data set that was used to conduct the analysis on percent chance a bridge collapses in Omaha, NE was the NTAD National Bridge Inventory,. This data set was filtered to contain all bridges in Iowa and Nebraska, it was then filtered again to focus in on the Omaha area. This was done by filter statements in R, using state codes, latitudes, and longitudes.
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
 library(tidyverse)
 library(dplyr)
 library(psych)
-omaha_bridges <- read.csv("data_readr.csv")
+library(knitr)
+
+omaha_bridges <- read.csv("omaha_bridges.csv")
 colname <- data.frame(colnames(omaha_bridges))
+
+library(leaflet)
+leaflet(omaha_bridges) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    lng = ~ LONG_017,
+    lat = ~ LAT_016,
+    radius = 5,
+    color = "red",
+    popup = ~paste("Bridge ID:", FACILITY_CARRIED_007)
+  )
 
 fil_dat <- omaha_bridges %>%
   select(c(1,2,5,15,21,22,25, 28:29,31:32, 68:77,88,103,107,112,116, 122:125))
 col <- data.frame(colnames(fil_dat))
-bridge_desc <- describe(fil_dat)
-hist(fil_dat$ADT_029)
-hist(fil_dat$OPERATING_RATING_064)
-hist(fil_dat$INVENTORY_RATING_066)
 
-library(ggplot2)
-ggplot(fil_dat,aes(x = DECK_COND_058)) + geom_bar()
-ggplot(fil_dat,aes(x = BRIDGE_CONDITION)) + geom_bar()
+
+
 fil_dat <- fil_dat %>%
   mutate(across(everything(), ~ ifelse(. == "N", NA, .)))
 
 bridge_cond <- fil_dat %>%
  filter(
    BRIDGE_CONDITION == "P"
- )
+ ) %>%
+   select(c(1,4,5,6,8,9:21,29,27,23))
 
 
 high_traffic <- bridge_cond %>%
@@ -38,20 +50,9 @@ high_traffic <- bridge_cond %>%
 
 
 library(psych)
-describe(high_traffic)
-library(maps)
-# Get state map data (or use 'county' for more detail)
-us_map <- map_data("state")
+kable(describe(data.frame(bridge_cond)), caption = "Bridge rating of 'P' data description")
+kable(describe(data.frame(high_traffic)), label= "High traffic bridges with rating of 'P'")
 
-# Plot the data
-ggplot() +
-  geom_polygon(data = us_map, aes(x = long, y = lat, group = group),
-               fill = "blue", color = "white") +
-  geom_point(data = bridge_cond, aes(x = LONG_017, y = LAT_016),
-             color = "darkred", size = 2.5, alpha = 0.8) +
-  coord_fixed(xlim = c(96.1, 95.8), ylim = c(41.2, 41.35)) +
-  labs(title = "Mapped Coordinates in Omaha", x = "Longitude", y = "Latitude") +
-  theme_minimal()
 
 
 
@@ -60,67 +61,88 @@ ggplot() +
 Here we are given a summary of the data and each variable and some descriptions attached. This data was then used to break down which bridges have the highest chance of collapsing in Omaha, NE. The criteria for collapsing was based on a variety of factors in the data set that have been filtered in R. This filtering allowed me to see which bridges have the lowest quality structure, maintenance, and most traffic.
 
 ```{r}
-high_risk_bridges <- filtered %>%
-  filter(
-    avg_rate < 6 &
-    avg_inv_op < 50
-  )
-
-
-collapse <- filtered%>%
-  filter(
-    avg_rate <5 &
-      avg_inv_op < 45 &
-      avg_traffic > 100
-    
-  )
-
-collapse_now <- filtered %>%
-  filter(
-    avg_rate < 4.5 &
-      avg_inv_op < 30 &
-      avg_traffic > 150 &
-      percent_truck > 10
-  )
-
-Do_not_drive <- filtered %>%
-  filter(
-    avg_rate <4 &
-      avg_inv_op < 25
-  )
-
-Casualties <- filtered %>%
-  filter(
-    avg_rate < 6 &
-    avg_inv_op < 50 &
-    avg_traffic > 1000 &
-      percent_truck > 10
-  )
 
 percents <- data.frame(
-  "high risk bridges" = nrow(high_risk_bridges)/nrow(fil_dat),
-  "Could collapse" = nrow(collapse)/nrow(fil_dat),
-  "collapsing soon" = nrow(collapse_now)/nrow(fil_dat)
+  "bridges at risk" = nrow(bridge_cond)/nrow(fil_dat),
+  "High traffic bridges at risk" = nrow(high_traffic)/nrow(fil_dat)
 )
 
-row.names(percents)[row.names(percents) == "1"] <- "Proportion of Bridges at Risk of Collapse"
 
 table <- t(percents)
-print(table)
+kable(table, caption = "Proportion of Bridges at risk of Collapse")
 
 ```
 
 We can see from this table that we have four different categories; high risk, collapse, collapsing soon, and casualties. This four groups were created to see the proportion of bridges that were in the worst state. The high risk category being the lowest risk of collapse and collapsing soon being the highest risk of collapse. We can see from these results that we have a 20% chance of driving on a high risk bridge in Omaha, NE. Along with that we have a 2.4% chance of driving on bridge that could collapse. Finally we have a .15% chance of being on a bridge that could collapse in the near future. This is just a rating system created by me so that we can estimate the proportion of bridges that are at risk of collapse based on traffic data and structural ratings. We were also able to find out some information on the proportion of bridges at high risk of collapse but with the most casualties
 
 ```{r}
-Casualties <- filtered %>%
-  filter(
-    avg_rate < 6 &
-    avg_inv_op < 50 &
-    avg_traffic > 1000 &
-      percent_truck > 10
+
+
+leaflet(high_traffic) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    lng = ~ LONG_017,
+    lat = ~ LAT_016,
+    radius = 5,
+    color = "red",
+    popup = ~paste("Bridge ID:", LOCATION_009)
   )
-describe(Casualties)
+
+
 ```
 
-These bridges are at risk of collapse and they also have the highest traffic flow among at risk bridges. These bridges are further at risk due to the fact that the mean percentage of truck traffic is 26% which is very high compared to most bridges in Omaha, NE. F
+These bridges are at risk of collapse and they also have the highest traffic flow among at risk bridges. These bridges are further at risk due to the fact that the mean percentage of truck traffic is 26% which is very high compared to most bridges in Omaha, NE.
+
+```{r}
+
+
+Omaha <- fil_dat %>%
+  mutate(collapse_risk = ifelse(BRIDGE_CONDITION == "P" & STRUCTURAL_EVAL_067 <= 4, 1, 0)) %>%
+  select(c(1,8,12,18,26,31))
+
+
+library(VIM)
+
+# Perform KNN imputation using the kNN function from VIM package
+one <- kNN(Omaha, k = 5)
+
+
+library(caret)
+
+
+# Create a partition (80% for training, 20% for testing)
+train_indices <- createDataPartition(one$OBJECTID, 
+                                     p = 0.8, 
+                                     list = FALSE)
+# Training data
+train_data <- one[train_indices, ]
+
+# Testing data
+test_data <- one[-train_indices, ]
+
+
+# Logistic regression model
+model1 <- glm(collapse_risk ~as.numeric(DECK_COND_058) + OPERATING_RATING_064 + as.numeric(YEAR_BUILT_027), 
+             family = binomial(link = "logit"), data = train_data)
+
+summary(model1)
+
+
+predicted_probabilities <- predict(model1, newdata = test_data, type = "response")
+
+predicted_classes <- ifelse(predicted_probabilities > 0.5, 1, 0)
+table(predicted_classes)
+ 5/163
+
+
+ # Actual values
+actual_classes <- test_data$collapse_risk
+ 
+ # Compare predicted vs actual values
+comparison <- data.frame(Actual = actual_classes, Predicted = predicted_classes)
+ 
+accuracy <- mean(predicted_classes == actual_classes)
+print(paste("Accuracy:", accuracy))
+
+
+```

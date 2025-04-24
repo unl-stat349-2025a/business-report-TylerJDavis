@@ -12,7 +12,7 @@ new_dat <- data %>%
 lat_min <- 41.0
 lat_max <- 41.5
 lon_min <- 96.2
-lon_max <- 95.8
+lon_max <- 95.6
 
 new_dat$LAT_016 <- as.numeric(new_dat$LAT_016) / 1e6
 new_dat$LONG_017 <- as.numeric(new_dat$LONG_017) / 1e6
@@ -108,5 +108,56 @@ row.names(percents)[row.names(percents) == "1"] <- "Proportion of Bridges at Ris
 
 table <- t(percents)
 
+# Create a binary variable for collapse risk (e.g., collapse if condition rating < 4)
+
+
+
+Omaha <- fil_dat %>%
+  mutate(collapse_risk = ifelse(BRIDGE_CONDITION == "P" & STRUCTURAL_EVAL_067 <= 4, 1, 0)) %>%
+  select(c(1,8,12,18,26,31))
+
+
+library(VIM)
+
+# Perform KNN imputation using the kNN function from VIM package
+one <- kNN(Omaha, k = 5)
+
+
+library(caret)
+
+
+# Create a partition (80% for training, 20% for testing)
+train_indices <- createDataPartition(one$OBJECTID, 
+                                     p = 0.8, 
+                                     list = FALSE)
+# Training data
+train_data <- one[train_indices, ]
+
+# Testing data
+test_data <- one[-train_indices, ]
+
+
+# Logistic regression model
+model1 <- glm(collapse_risk ~as.numeric(DECK_COND_058) + OPERATING_RATING_064 + as.numeric(YEAR_BUILT_027), 
+             family = binomial(link = "logit"), data = train_data)
+
+summary(model1)
+
+
+predicted_probabilities <- predict(model1, newdata = test_data, type = "response")
+
+predicted_classes <- ifelse(predicted_probabilities > 0.5, 1, 0)
+table(predicted_classes)
+ 5/163
+
+
+ # Actual values
+actual_classes <- test_data$collapse_risk
+ 
+ # Compare predicted vs actual values
+comparison <- data.frame(Actual = actual_classes, Predicted = predicted_classes)
+ 
+accuracy <- mean(predicted_classes == actual_classes)
+print(paste("Accuracy:", accuracy))
 
 
