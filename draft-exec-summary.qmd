@@ -1,20 +1,26 @@
 ---
 title: "Draft: Executive Summary"
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
-This analysis examines the risk of bridge collapse in Omaha, NE, using data from the NTAD
-National Bridge Inventory. The data set was filtered to focus on bridges within Nebraska and
-more specifically Omaha. The results show that approximately 20% of the bridges in Omaha are
-categorized as "high risk," meaning they have low structural condition and inventory ratings,
-though they are not at immediate risk of collapse. About 2.4% of bridges are identified as being
-in a state where collapse is a high risk, due to higher traffic. A smaller portion, 0.15% of
-bridges, are at the most risk, these are the most urgent cases with severe degradation.
+This analysis examines the risk of bridge collapse in Omaha, NE, using
+data from the NTAD National Bridge Inventory. The data set was filtered
+to focus on bridges within Nebraska and more specifically Omaha. The
+results show that around 5% of bridges in Omaha, NE are in poor
+condition hence at risk of collapse. We also see that bridges that are
+considered high traffic have a 1.4% percent chance of being at poor
+condition. This is all collaborated by our linear model which uses a
+formulated collapse variable to select which bridges are at risk of
+collapse. This model has been shown to be 98% accurate and predicted a
+similar percentage of bridges at risk of collapse as the data showed.
 
-Given these findings, it is clear that Omaha, NE needs to invest in infrastructure improvement.
-Local and state government need to take action by improving overall bridge structural condition
-starting with the bridges in the highest risk category. The traffic patterns of the city should
-also be analyzed to understand which bridges pose the most risk to commuters on a daily basis.
-The public can also help this issue by creating awareness around the lack of care into the
-infrastructure of the city of Omaha.
-
-
+Given these findings, it is clear that Omaha, NE needs to invest in
+infrastructure improvement. Local and state government need to take
+action by improving overall bridge structural condition starting with
+the bridges in the highest risk category. The traffic patterns of the
+city should also be analyzed to understand which bridges pose the most
+risk to commuters on a daily basis. The public can also help this issue
+by creating awareness around the lack of care into the infrastructure of
+the city of Omaha.

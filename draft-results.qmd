@@ -40,8 +40,6 @@ desc_h_t <- describe(high_traffic)
 
 The first step to the formal analysis is to find the descriptive statistics from the bridges that are in poor condition.
 
-library(psych)
-
 ```{r}
 #| echo: false
 #| message: false
