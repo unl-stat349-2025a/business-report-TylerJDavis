@@ -7,10 +7,12 @@ title: "Results"
 #| message: false
 #| warning: false
 #| results: hide
+
 library(tidyverse)
 library(dplyr)
 library(psych)
 library(knitr)
+library(psych)
 
 omaha_bridges <- read.csv("omaha_bridges.csv")
 
@@ -31,7 +33,7 @@ high_traffic <- bridge_cond1 %>%
   filter (
     ADT_029 > 5000 & TRAFFIC_LANES_ON_028A > 2
   )
-library(psych)
+
 desc_brid_cond <- describe(bridge_cond1)
 desc_h_t <- describe(high_traffic)
 ```
