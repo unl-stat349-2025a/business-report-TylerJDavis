@@ -11,11 +11,11 @@ book:
     - index.qmd
     - intro.qmd
     - Methods.qmd
+    - draft-results.qmd
     - summary.qmd
     - references.qmd
   appendices:
     - draft-data-doc.qmd
-    - draft-results.qmd
     - draft-intro-conclusions.qmd
     - draft-exec-summary.qmd
 
