@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Evaluation of  - Appendix B — Results</title>
+<title>Evaluation of  - 3&nbsp; Results</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./draft-intro-conclusions.html" rel="next">
-<link href="./draft-data-doc.html" rel="prev">
+<link href="./summary.html" rel="next">
+<link href="./Methods.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -110,7 +110,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./draft-data-doc.html">Appendices</a></li><li class="breadcrumb-item"><a href="./draft-results.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Results</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./draft-results.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -155,8 +155,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./draft-results.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -182,20 +188,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./draft-results.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Results</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./draft-intro-conclusions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Draft: Intro/Conclusions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Draft: Intro/Conclusions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./draft-exec-summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Draft: Executive Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Draft: Executive Summary</span></span></a>
   </div>
 </li>
       </ul>
@@ -211,9 +211,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./draft-data-doc.html">Appendices</a></li><li class="breadcrumb-item"><a href="./draft-results.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Results</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Appendix B — Results</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results</span></h1>
 </div>
 
 
@@ -231,6 +231,7 @@ window.Quarto = {
 
 
 <p>The first step to the formal analysis is to find the descriptive statistics from the bridges that are in poor condition.</p>
+<p>library(psych)</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -507,23 +508,23 @@ window.Quarto = {
 <p>The model above is a generalized linear model, as our response variable is non - normal ( Binomial), this is done using the logit link function.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="iiitfvkqvg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#iiitfvkqvg table {
+<div id="akwcfdkhls" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#akwcfdkhls table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#iiitfvkqvg thead, #iiitfvkqvg tbody, #iiitfvkqvg tfoot, #iiitfvkqvg tr, #iiitfvkqvg td, #iiitfvkqvg th {
+#akwcfdkhls thead, #akwcfdkhls tbody, #akwcfdkhls tfoot, #akwcfdkhls tr, #akwcfdkhls td, #akwcfdkhls th {
   border-style: none;
 }
 
-#iiitfvkqvg p {
+#akwcfdkhls p {
   margin: 0;
   padding: 0;
 }
 
-#iiitfvkqvg .gt_table {
+#akwcfdkhls .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -549,12 +550,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#iiitfvkqvg .gt_caption {
+#akwcfdkhls .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#iiitfvkqvg .gt_title {
+#akwcfdkhls .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -566,7 +567,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#iiitfvkqvg .gt_subtitle {
+#akwcfdkhls .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -578,7 +579,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#iiitfvkqvg .gt_heading {
+#akwcfdkhls .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -590,13 +591,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#iiitfvkqvg .gt_bottom_border {
+#akwcfdkhls .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iiitfvkqvg .gt_col_headings {
+#akwcfdkhls .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -611,7 +612,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#iiitfvkqvg .gt_col_heading {
+#akwcfdkhls .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -631,7 +632,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#iiitfvkqvg .gt_column_spanner_outer {
+#akwcfdkhls .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -643,15 +644,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#iiitfvkqvg .gt_column_spanner_outer:first-child {
+#akwcfdkhls .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iiitfvkqvg .gt_column_spanner_outer:last-child {
+#akwcfdkhls .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iiitfvkqvg .gt_column_spanner {
+#akwcfdkhls .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -663,11 +664,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#iiitfvkqvg .gt_spanner_row {
+#akwcfdkhls .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#iiitfvkqvg .gt_group_heading {
+#akwcfdkhls .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -693,7 +694,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#iiitfvkqvg .gt_empty_group_heading {
+#akwcfdkhls .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -708,15 +709,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#iiitfvkqvg .gt_from_md > :first-child {
+#akwcfdkhls .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iiitfvkqvg .gt_from_md > :last-child {
+#akwcfdkhls .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iiitfvkqvg .gt_row {
+#akwcfdkhls .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -735,7 +736,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#iiitfvkqvg .gt_stub {
+#akwcfdkhls .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -748,7 +749,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#iiitfvkqvg .gt_stub_row_group {
+#akwcfdkhls .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -762,15 +763,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#iiitfvkqvg .gt_row_group_first td {
+#akwcfdkhls .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#iiitfvkqvg .gt_row_group_first th {
+#akwcfdkhls .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#iiitfvkqvg .gt_summary_row {
+#akwcfdkhls .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -780,16 +781,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#iiitfvkqvg .gt_first_summary_row {
+#akwcfdkhls .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#iiitfvkqvg .gt_first_summary_row.thick {
+#akwcfdkhls .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#iiitfvkqvg .gt_last_summary_row {
+#akwcfdkhls .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -799,7 +800,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#iiitfvkqvg .gt_grand_summary_row {
+#akwcfdkhls .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -809,7 +810,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#iiitfvkqvg .gt_first_grand_summary_row {
+#akwcfdkhls .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -819,7 +820,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#iiitfvkqvg .gt_last_grand_summary_row_top {
+#akwcfdkhls .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -829,11 +830,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#iiitfvkqvg .gt_striped {
+#akwcfdkhls .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iiitfvkqvg .gt_table_body {
+#akwcfdkhls .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -842,7 +843,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#iiitfvkqvg .gt_footnotes {
+#akwcfdkhls .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -856,7 +857,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#iiitfvkqvg .gt_footnote {
+#akwcfdkhls .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -865,7 +866,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#iiitfvkqvg .gt_sourcenotes {
+#akwcfdkhls .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -879,7 +880,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#iiitfvkqvg .gt_sourcenote {
+#akwcfdkhls .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -887,72 +888,72 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#iiitfvkqvg .gt_left {
+#akwcfdkhls .gt_left {
   text-align: left;
 }
 
-#iiitfvkqvg .gt_center {
+#akwcfdkhls .gt_center {
   text-align: center;
 }
 
-#iiitfvkqvg .gt_right {
+#akwcfdkhls .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iiitfvkqvg .gt_font_normal {
+#akwcfdkhls .gt_font_normal {
   font-weight: normal;
 }
 
-#iiitfvkqvg .gt_font_bold {
+#akwcfdkhls .gt_font_bold {
   font-weight: bold;
 }
 
-#iiitfvkqvg .gt_font_italic {
+#akwcfdkhls .gt_font_italic {
   font-style: italic;
 }
 
-#iiitfvkqvg .gt_super {
+#akwcfdkhls .gt_super {
   font-size: 65%;
 }
 
-#iiitfvkqvg .gt_footnote_marks {
+#akwcfdkhls .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#iiitfvkqvg .gt_asterisk {
+#akwcfdkhls .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#iiitfvkqvg .gt_indent_1 {
+#akwcfdkhls .gt_indent_1 {
   text-indent: 5px;
 }
 
-#iiitfvkqvg .gt_indent_2 {
+#akwcfdkhls .gt_indent_2 {
   text-indent: 10px;
 }
 
-#iiitfvkqvg .gt_indent_3 {
+#akwcfdkhls .gt_indent_3 {
   text-indent: 15px;
 }
 
-#iiitfvkqvg .gt_indent_4 {
+#akwcfdkhls .gt_indent_4 {
   text-indent: 20px;
 }
 
-#iiitfvkqvg .gt_indent_5 {
+#akwcfdkhls .gt_indent_5 {
   text-indent: 25px;
 }
 
-#iiitfvkqvg .katex-display {
+#akwcfdkhls .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#iiitfvkqvg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#akwcfdkhls div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -973,31 +974,31 @@ window.Quarto = {
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="term">(Intercept)</td>
-<td class="gt_row gt_right" headers="estimate">106.38207258</td>
-<td class="gt_row gt_right" headers="std.error">29.42735626</td>
-<td class="gt_row gt_right" headers="statistic">3.615074</td>
-<td class="gt_row gt_right" headers="p.value">3.002618e-04</td>
+<td class="gt_row gt_right" headers="estimate">67.41724375</td>
+<td class="gt_row gt_right" headers="std.error">28.51037965</td>
+<td class="gt_row gt_right" headers="statistic">2.364656</td>
+<td class="gt_row gt_right" headers="p.value">1.804682e-02</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="term">as.numeric(DECK_COND_058)</td>
-<td class="gt_row gt_right" headers="estimate">-2.24170551</td>
-<td class="gt_row gt_right" headers="std.error">0.36919860</td>
-<td class="gt_row gt_right" headers="statistic">-6.071815</td>
-<td class="gt_row gt_right" headers="p.value">1.264728e-09</td>
+<td class="gt_row gt_right" headers="estimate">-2.00086901</td>
+<td class="gt_row gt_right" headers="std.error">0.34093397</td>
+<td class="gt_row gt_right" headers="statistic">-5.868787</td>
+<td class="gt_row gt_right" headers="p.value">4.389939e-09</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="term">OPERATING_RATING_064</td>
-<td class="gt_row gt_right" headers="estimate">-0.05372844</td>
-<td class="gt_row gt_right" headers="std.error">0.01977683</td>
-<td class="gt_row gt_right" headers="statistic">-2.716736</td>
-<td class="gt_row gt_right" headers="p.value">6.592913e-03</td>
+<td class="gt_row gt_right" headers="estimate">-0.06837521</td>
+<td class="gt_row gt_right" headers="std.error">0.02017046</td>
+<td class="gt_row gt_right" headers="statistic">-3.389868</td>
+<td class="gt_row gt_right" headers="p.value">6.992629e-04</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="term">as.numeric(YEAR_BUILT_027)</td>
-<td class="gt_row gt_right" headers="estimate">-0.04815458</td>
-<td class="gt_row gt_right" headers="std.error">0.01496407</td>
-<td class="gt_row gt_right" headers="statistic">-3.218014</td>
-<td class="gt_row gt_right" headers="p.value">1.290814e-03</td>
+<td class="gt_row gt_right" headers="estimate">-0.02857459</td>
+<td class="gt_row gt_right" headers="std.error">0.01480647</td>
+<td class="gt_row gt_right" headers="statistic">-1.929871</td>
+<td class="gt_row gt_right" headers="p.value">5.362278e-02</td>
 </tr>
 </tbody>
 </table>
@@ -1018,11 +1019,11 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">0</td>
-<td style="text-align: right;">165</td>
+<td style="text-align: right;">164</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1</td>
-<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
 </tr>
 </tbody>
 </table>
@@ -1039,7 +1040,7 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0.9761905</td>
+<td style="text-align: right;">0.9642857</td>
 </tr>
 </tbody>
 </table>
@@ -1439,13 +1440,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./draft-data-doc.html" class="pagination-link  aria-label=" &lt;span="" data="" documentation&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Draft: Data Documentation</span></span>
+      <a href="./Methods.html" class="pagination-link  aria-label=" &lt;span="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Methods</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./draft-intro-conclusions.html" class="pagination-link" aria-label="<span class='chapter-number'>C</span>&nbsp; <span class='chapter-title'>Draft: Intro/Conclusions</span>">
-        <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Draft: Intro/Conclusions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./summary.html" class="pagination-link" aria-label="<span class='chapter-number'>4</span>&nbsp; <span class='chapter-title'>Summary</span>">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

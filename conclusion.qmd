@@ -1,12 +1,7 @@
 ---
-title: "Draft: Intro/Conclusions"
+title: "Conclusion"
+editor: visual
 ---
-
-# Introduction
-
-Have you ever been driving over a bridge and wondering how stable it is. This is a question that has created a lot of buzz recently especially with the state of the infrastructure in the United States. There is a data set that contains all of the information regarding federal, state, and local bridges in the United States, and it is the National Bridge Inventory. This data set contains all of the information needed to estimate and analyze the risk of a bridge collapsing. The data set also contains information to focus on individual state or even latitude and longitude data to focus on certain cities. This brings us to the question at hand and that is, what is the chance that you are driving over a bridge at risk of collapse in Omaha, NE. This question can be answered usign the National Bridge Inventory data set and then focusing in on the Omaha, NE area. This will allow us to gain a greater understanding of the bridge condition in the Omaha area and hopefully allows us a greater understanding of the bridges that are at most risk of collapse in Omaha, NE.
-
-# Conclusion
 
 When looking back at the opening question, do you ever think of how stable a bridge is when you are driving over top of it, the answer would be hopefully not. This is because in our analysis we have found that 5% of the bridges in the Omaha,NE area have a bridge rating of "poor". We have also see that 1.4 % of bridges are considered high traffic bridges and also have a "poor" rating. This tells us that in Omaha, NE if you took a random sample of 100 bridges, 5 would come out with a "poor" rating. This is a major issue highlighting the lack of infrastructure mantinence and repair in our country. This is a future concern and with bridges and roads only getting older it is time to put more money and research into how to maintain our aging infrastructure. This lead to further investigation using the National Bridge Inventory data set which lead us to create a collapse variable based on important variables and then try to predict, from the data we have, which bridges are at most risk of collapse. The model we developed predicted our collapse variable with 98% accuracy showing that with this data set there is the ability to predict which bridges are at most risk of collapse. The predicted percentage of bridges that were at risk of collapse was the a very similar percentage to the percentage in our actual data.
 
