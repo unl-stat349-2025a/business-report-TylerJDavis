@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -137,12 +157,6 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
@@ -189,19 +203,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./draft-data-doc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Draft: Data Documentation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Data Documentation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./draft-intro-conclusions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Draft: Intro/Conclusions</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./draft-exec-summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Draft: Executive Summary</span></span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Description</span></a>
   </div>
 </li>
       </ul>
@@ -212,7 +220,23 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link active" data-scroll-target="#descriptive-statistics"><span class="header-section-number">3.1</span> Descriptive Statistics</a>
+  <ul class="collapse">
+  <li><a href="#descriptive-statistics-bridges-in-omaha-that-are-in-poor-condition" id="toc-descriptive-statistics-bridges-in-omaha-that-are-in-poor-condition" class="nav-link" data-scroll-target="#descriptive-statistics-bridges-in-omaha-that-are-in-poor-condition"><span class="header-section-number">3.1.1</span> Descriptive Statistics: Bridges in Omaha that are in Poor Condition</a></li>
+  <li><a href="#descriptive-statistics-bridges-in-omaha-that-are-in-poor-condition-and-have-high-traffic" id="toc-descriptive-statistics-bridges-in-omaha-that-are-in-poor-condition-and-have-high-traffic" class="nav-link" data-scroll-target="#descriptive-statistics-bridges-in-omaha-that-are-in-poor-condition-and-have-high-traffic"><span class="header-section-number">3.1.2</span> Descriptive Statistics: Bridges in Omaha that are in Poor Condition and have High Traffic</a></li>
+  <li><a href="#proportion-of-bridges-in-poor-condition" id="toc-proportion-of-bridges-in-poor-condition" class="nav-link" data-scroll-target="#proportion-of-bridges-in-poor-condition"><span class="header-section-number">3.1.3</span> Proportion of Bridges in Poor Condition</a></li>
+  </ul></li>
+  <li><a href="#statistical-model-and-analysis" id="toc-statistical-model-and-analysis" class="nav-link" data-scroll-target="#statistical-model-and-analysis"><span class="header-section-number">3.2</span> Statistical Model and Analysis</a>
+  <ul class="collapse">
+  <li><a href="#generalized-linear-model" id="toc-generalized-linear-model" class="nav-link" data-scroll-target="#generalized-linear-model"><span class="header-section-number">3.2.1</span> Generalized Linear Model</a></li>
+  <li><a href="#prediction-and-model-accuracy" id="toc-prediction-and-model-accuracy" class="nav-link" data-scroll-target="#prediction-and-model-accuracy"><span class="header-section-number">3.2.2</span> Prediction and Model Accuracy</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -236,258 +260,234 @@ window.Quarto = {
 </header>
 
 
-<p>The first step to the formal analysis is to find the descriptive statistics from the bridges that are in poor condition.</p>
+<section id="descriptive-statistics" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="descriptive-statistics"><span class="header-section-number">3.1</span> Descriptive Statistics</h2>
+<p>The first step of the analysis was finding descriptive statistics of subsets of data. The subsets that were used are bridges in Omaha that are in poor condition along with bridges with high traffic in poor condition.</p>
+<section id="descriptive-statistics-bridges-in-omaha-that-are-in-poor-condition" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="descriptive-statistics-bridges-in-omaha-that-are-in-poor-condition"><span class="header-section-number">3.1.1</span> Descriptive Statistics: Bridges in Omaha that are in Poor Condition</h3>
 <div class="cell">
+<div id="tbl-bridge-stats" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-bridge-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.1: Descriptive statistics of bridges in poor condition
+</figcaption>
+<div aria-describedby="tbl-bridge-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<caption>Bridges with Poor Rating Descriptive Statistics</caption>
-<colgroup>
-<col style="width: 33%">
-<col style="width: 17%">
-<col style="width: 17%">
-<col style="width: 4%">
-<col style="width: 9%">
-<col style="width: 17%">
-</colgroup>
+<table class="do-not-create-environment cell table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: right;">mean</th>
-<th style="text-align: right;">sd</th>
+<th style="text-align: left;">mean</th>
+<th style="text-align: left;">sd</th>
 <th style="text-align: right;">n</th>
-<th style="text-align: right;">median</th>
-<th style="text-align: right;">se</th>
+<th style="text-align: left;">median</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">OBJECTID</td>
-<td style="text-align: right;">2.627892e+05</td>
-<td style="text-align: right;">7.854381e+04</td>
-<td style="text-align: right;">42</td>
-<td style="text-align: right;">329657</td>
-<td style="text-align: right;">1.211957e+04</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">YEAR_BUILT_027</td>
-<td style="text-align: right;">1.954714e+03</td>
-<td style="text-align: right;">2.007217e+01</td>
+<td style="text-align: left;">1954.714</td>
+<td style="text-align: left;">20.072</td>
 <td style="text-align: right;">42</td>
-<td style="text-align: right;">1957</td>
-<td style="text-align: right;">3.097203e+00</td>
+<td style="text-align: left;">1957</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">TRAFFIC_LANES_ON_028A</td>
-<td style="text-align: right;">2.500000e+00</td>
-<td style="text-align: right;">9.938837e-01</td>
+<td style="text-align: left;">2.500</td>
+<td style="text-align: left;">0.994</td>
 <td style="text-align: right;">42</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1.533596e-01</td>
+<td style="text-align: left;">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">ADT_029</td>
-<td style="text-align: right;">1.224402e+04</td>
-<td style="text-align: right;">1.976196e+04</td>
+<td style="text-align: left;">12244.024</td>
+<td style="text-align: left;">19761.961</td>
 <td style="text-align: right;">42</td>
-<td style="text-align: right;">2027</td>
-<td style="text-align: right;">3.049337e+03</td>
+<td style="text-align: left;">2027</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">DECK_COND_058*</td>
-<td style="text-align: right;">3.484849e+00</td>
-<td style="text-align: right;">1.175830e+00</td>
+<td style="text-align: left;">3.485</td>
+<td style="text-align: left;">1.176</td>
 <td style="text-align: right;">33</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">2.046857e-01</td>
+<td style="text-align: left;">3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">SUPERSTRUCTURE_COND_059*</td>
-<td style="text-align: right;">3.545454e+00</td>
-<td style="text-align: right;">1.148121e+00</td>
+<td style="text-align: left;">3.545</td>
+<td style="text-align: left;">1.148</td>
 <td style="text-align: right;">33</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1.998622e-01</td>
+<td style="text-align: left;">3</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">SUBSTRUCTURE_COND_060*</td>
-<td style="text-align: right;">3.606061e+00</td>
-<td style="text-align: right;">8.268689e-01</td>
+<td style="text-align: left;">3.606</td>
+<td style="text-align: left;">0.827</td>
 <td style="text-align: right;">33</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1.439394e-01</td>
+<td style="text-align: left;">4</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">CHANNEL_COND_061*</td>
-<td style="text-align: right;">3.156250e+00</td>
-<td style="text-align: right;">1.346666e+00</td>
+<td style="text-align: left;">3.156</td>
+<td style="text-align: left;">1.347</td>
 <td style="text-align: right;">32</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">2.380591e-01</td>
+<td style="text-align: left;">3</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">CULVERT_COND_062*</td>
-<td style="text-align: right;">1.000000e+00</td>
-<td style="text-align: right;">0.000000e+00</td>
+<td style="text-align: left;">1.000</td>
+<td style="text-align: left;">0.000</td>
 <td style="text-align: right;">9</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.000000e+00</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">STRUCTURAL_EVAL_067</td>
-<td style="text-align: right;">3.595238e+00</td>
-<td style="text-align: right;">1.515119e+00</td>
-<td style="text-align: right;">42</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">2.337880e-01</td>
+<td style="text-align: left;">1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">SCOUR_CRITICAL_113*</td>
-<td style="text-align: right;">4.031250e+00</td>
-<td style="text-align: right;">1.121185e+00</td>
-<td style="text-align: right;">32</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1.981994e-01</td>
+<td style="text-align: left;">STRUCTURAL_EVAL_067</td>
+<td style="text-align: left;">3.595</td>
+<td style="text-align: left;">1.515</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: left;">4</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">SCOUR_CRITICAL_113*</td>
+<td style="text-align: left;">4.031</td>
+<td style="text-align: left;">1.121</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">BRIDGE_CONDITION*</td>
-<td style="text-align: right;">1.000000e+00</td>
-<td style="text-align: right;">0.000000e+00</td>
+<td style="text-align: left;">1.000</td>
+<td style="text-align: left;">0.000</td>
 <td style="text-align: right;">42</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.000000e+00</td>
+<td style="text-align: left;">1</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>From the table above we can see that the average year of the bridges built in Omaha, NE is 1955. We can also see fro this data that all of our structural condition ratings are low as the average is below 4 which tells us that the structural condition of the all of these bridges is below par. We can also see that the average daily traffic(ADT_029) median is 2,027 cars per day. We will now look at the descriptive statistics for the high traffic data subset.</p>
+</figure>
+</div>
+</div>
+<p><a href="#tbl-bridge-stats" class="quarto-xref">Table&nbsp;<span>3.1</span></a> shows that the average year of the bridges built in Omaha, NE was 1955. This data also shows that all of the structural condition ratings are low, as the average is shockingly below 4 (out of 10). Also, the average daily traffic (ADT_029) mean is 12240 cars per day.</p>
+</section>
+<section id="descriptive-statistics-bridges-in-omaha-that-are-in-poor-condition-and-have-high-traffic" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="descriptive-statistics-bridges-in-omaha-that-are-in-poor-condition-and-have-high-traffic"><span class="header-section-number">3.1.2</span> Descriptive Statistics: Bridges in Omaha that are in Poor Condition and have High Traffic</h3>
 <div class="cell">
+<div id="tbl-bridge-stats1" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-bridge-stats1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.2: High Traffic Bridges with Poor Rating
+</figcaption>
+<div aria-describedby="tbl-bridge-stats1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<caption>High Traffic Bridges with a Rating of Poor</caption>
-<colgroup>
-<col style="width: 32%">
-<col style="width: 17%">
-<col style="width: 17%">
-<col style="width: 3%">
-<col style="width: 11%">
-<col style="width: 17%">
-</colgroup>
+<table class="do-not-create-environment cell table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: right;">mean</th>
-<th style="text-align: right;">sd</th>
+<th style="text-align: left;">mean</th>
+<th style="text-align: left;">sd</th>
 <th style="text-align: right;">n</th>
-<th style="text-align: right;">median</th>
-<th style="text-align: right;">se</th>
+<th style="text-align: left;">median</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">OBJECTID</td>
-<td style="text-align: right;">3.349151e+05</td>
-<td style="text-align: right;">1.195391e+03</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">335323.5</td>
-<td style="text-align: right;">345.0797110</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">YEAR_BUILT_027</td>
-<td style="text-align: right;">1.969167e+03</td>
-<td style="text-align: right;">1.719848e+01</td>
+<td style="text-align: left;">1969.167</td>
+<td style="text-align: left;">17.198</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">1965.0</td>
-<td style="text-align: right;">4.9647749</td>
+<td style="text-align: left;">1965</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">TRAFFIC_LANES_ON_028A</td>
-<td style="text-align: right;">3.916667e+00</td>
-<td style="text-align: right;">5.149287e-01</td>
+<td style="text-align: left;">3.917</td>
+<td style="text-align: left;">0.515</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">4.0</td>
-<td style="text-align: right;">0.1486471</td>
+<td style="text-align: left;">4</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">ADT_029</td>
-<td style="text-align: right;">3.815917e+04</td>
-<td style="text-align: right;">2.025147e+04</td>
+<td style="text-align: left;">38159.167</td>
+<td style="text-align: left;">20251.467</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">34352.5</td>
-<td style="text-align: right;">5846.0950070</td>
+<td style="text-align: left;">34353</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">DECK_COND_058*</td>
-<td style="text-align: right;">1.000000e+00</td>
-<td style="text-align: right;">0.000000e+00</td>
+<td style="text-align: left;">1.000</td>
+<td style="text-align: left;">0.000</td>
 <td style="text-align: right;">9</td>
-<td style="text-align: right;">1.0</td>
-<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">SUPERSTRUCTURE_COND_059*</td>
-<td style="text-align: right;">2.111111e+00</td>
-<td style="text-align: right;">1.166667e+00</td>
+<td style="text-align: left;">2.111</td>
+<td style="text-align: left;">1.167</td>
 <td style="text-align: right;">9</td>
-<td style="text-align: right;">2.0</td>
-<td style="text-align: right;">0.3888889</td>
+<td style="text-align: left;">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">SUBSTRUCTURE_COND_060*</td>
-<td style="text-align: right;">1.222222e+00</td>
-<td style="text-align: right;">4.409586e-01</td>
+<td style="text-align: left;">1.222</td>
+<td style="text-align: left;">0.441</td>
 <td style="text-align: right;">9</td>
-<td style="text-align: right;">1.0</td>
-<td style="text-align: right;">0.1469862</td>
+<td style="text-align: left;">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">CHANNEL_COND_061*</td>
-<td style="text-align: right;">2.400000e+00</td>
-<td style="text-align: right;">8.944272e-01</td>
+<td style="text-align: left;">2.400</td>
+<td style="text-align: left;">0.894</td>
 <td style="text-align: right;">5</td>
-<td style="text-align: right;">3.0</td>
-<td style="text-align: right;">0.4000000</td>
+<td style="text-align: left;">3</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">CULVERT_COND_062*</td>
-<td style="text-align: right;">1.000000e+00</td>
-<td style="text-align: right;">0.000000e+00</td>
+<td style="text-align: left;">1.000</td>
+<td style="text-align: left;">0.000</td>
 <td style="text-align: right;">3</td>
-<td style="text-align: right;">1.0</td>
-<td style="text-align: right;">0.0000000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">STRUCTURAL_EVAL_067</td>
-<td style="text-align: right;">3.833333e+00</td>
-<td style="text-align: right;">1.898963e+00</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">4.0</td>
-<td style="text-align: right;">0.5481834</td>
+<td style="text-align: left;">1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">SCOUR_CRITICAL_113*</td>
-<td style="text-align: right;">1.800000e+00</td>
-<td style="text-align: right;">8.366600e-01</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">2.0</td>
-<td style="text-align: right;">0.3741657</td>
+<td style="text-align: left;">STRUCTURAL_EVAL_067</td>
+<td style="text-align: left;">3.833</td>
+<td style="text-align: left;">1.899</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">4</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">SCOUR_CRITICAL_113*</td>
+<td style="text-align: left;">1.800</td>
+<td style="text-align: left;">0.837</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">BRIDGE_CONDITION*</td>
-<td style="text-align: right;">1.000000e+00</td>
-<td style="text-align: right;">0.000000e+00</td>
+<td style="text-align: left;">1.000</td>
+<td style="text-align: left;">0.000</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">1.0</td>
-<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">1</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>These bridges are at risk of collapse and they also have the highest traffic flow among at risk bridges. These bridges are further at risk due to the fact that the mean percentage of truck traffic is 26% which is very high compared to most bridges in Omaha, NE. We can see this in the descriptive statistics as the mean of the structural conditions is below 3 which is lower than if the bridges were just at poor condition. We can also see that the average year built of the bridges is slightly newer at 1969. Finally, we can see that median of the average daily traffic is 34353 which is much higher than the previous subset. The next step is to look at the proportion of bridges in Omaha that have a poor condition and that have a poor condition under high traffic.</p>
+</figure>
+</div>
+</div>
+<p>These bridges displayed in <a href="#tbl-bridge-stats1" class="quarto-xref">Table&nbsp;<span>3.2</span></a> are at risk of collapse and they also have the highest traffic flow among at risk bridges. These bridges are further at risk due to the fact that the mean average daily traffic is 38160 which is very high compared to most bridges in Omaha, NE. It can be shown form the descriptive statistics that the mean of the structural conditions is below 3 which is lower than if the bridges were at poor condition. It can also be seen that the average year built is slightly newer at 1969 than bridges that are not high traffic. Finally, we can see that median of the average number of lanes is 3.92 which is much higher than the previous subset. The next step is to look at the proportion of bridges in Omaha that have a poor condition and that have a poor condition under high traffic.</p>
+</section>
+<section id="proportion-of-bridges-in-poor-condition" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="proportion-of-bridges-in-poor-condition"><span class="header-section-number">3.1.3</span> Proportion of Bridges in Poor Condition</h3>
 <div class="cell">
+<div id="tbl-per" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-per-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.3: Proportion of Bridges at Risk in all of Omaha, NE
+</figcaption>
+<div aria-describedby="tbl-per-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="do-not-create-environment cell table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: right;">Bridges at Risk</th>
@@ -496,40 +496,59 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0.0495868</td>
-<td style="text-align: right;">0.0141677</td>
+<td style="text-align: right;">0.0496</td>
+<td style="text-align: right;">0.0142</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>From this table we can see that the percent chance that a bridge in Omaha, NE is in poor condition is 5%. Along with that, the percent chance that a bridge in poor condition has high traffic is 1.4%. This tells us that we have a minimal chance of coming across a bridge that is at risk of collapse by structural ratings. This was a solution primarily based on descriptive statistics, we will now create a statistical model to predict a collapse of a bridge. To do this task we must create a collapse variable. This will be done by creating a binary variable that depends on if the bridge condition is poor and is the structural evaluation of the bridge in less than 4. These two variables give us the best insight into if a bridge is at risk of collapse, hence they will be used to create the variable. The data that we have also contains many “NA” values, to take care of this issue will will impute the data, or estimate values for the “NA” values based on information in the data set. The new imputed data set is what we will use to form our model.</p>
-<p>The model we will use will be the following:</p>
+</figure>
+</div>
+</div>
+<p><a href="#tbl-per" class="quarto-xref">Table&nbsp;<span>3.3</span></a> shows that the percent chance that a bridge in Omaha, NE is in poor condition is 4.96 %. Along with that, the percent chance that a bridge in poor condition has high traffic is 1.42%. This tells us that there is a minimal chance of coming across a bridge that is at risk of collapse by structural ratings. This was a solution primarily based on descriptive statistics, the next step is to develop a model.</p>
+</section>
+</section>
+<section id="statistical-model-and-analysis" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="statistical-model-and-analysis"><span class="header-section-number">3.2</span> Statistical Model and Analysis</h2>
+<p>To do this task a collapse variable was created. This will be done by creating a binary variable that depends on if the bridge condition is poor and if the structural evaluation of the bridge in less than 4. These two variables give the best insight into if a bridge is at risk of collapse, hence they will be used to create the response variable for the model. The data that also contains many “NA” values, to take care of this issue the data will be imputed, or estimated values for the “NA” ’s will be formed based on information in the data set. The new imputed data set is what will be used to form the model <span class="citation" data-cites="littleMissingDataAssumptions2021">Little (<a href="references.html#ref-littleMissingDataAssumptions2021" role="doc-biblioref">2021</a>)</span>.<br>
+</p>
+<section id="generalized-linear-model" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="generalized-linear-model"><span class="header-section-number">3.2.1</span> Generalized Linear Model</h3>
+<p>The model used will be the following:</p>
 <p><span class="math display">\[
-\log\left(\frac{P(\text{collapse_risk} = 1)}{1 - P(\text{collapse_risk} = 1)}\right)
-= \beta_0 + \beta_1 \cdot \text{DECK_COND_058} + \beta_2 \cdot \text{OPERATING_RATING_064}
-+ \beta_3 \cdot \text{YEAR_BUILT_027}
+\log\left( \frac{P(\text{collapse\_risk} = 1)}{1 - P(\text{collapse\_risk} = 1)} \right)
+= \beta_0 + \beta_1 \cdot \text{DECK\_COND\_058} + \beta_2 \cdot \text{OPERATING\_RATING\_064}
++ \beta_3 \cdot \text{YEAR\_BUILT\_027}
 \]</span></p>
-<p>The model above is a generalized linear model, as our response variable is non - normal ( Binomial), this is done using the logit link function.</p>
+<p>The model above is a generalized linear model, as the response variable is non - normal ( Binomial), a normal linear model can not be used. The modification is done by using the logit link function. From this model the regression coefficient estimates will be obtained to use for prediction when the next bridge will collapse. The regression coefficients will be found using a training subset of the data (80% of the rows), which will be found using the caret package. This will then allow us to test the prediction capabilities of our model using the remaining 20% of our data, the test data set.</p>
+<section id="coefficient-estimates" class="level4" data-number="3.2.1.1">
+<h4 data-number="3.2.1.1" class="anchored" data-anchor-id="coefficient-estimates"><span class="header-section-number">3.2.1.1</span> Coefficient Estimates</h4>
 <div class="cell">
+<div id="tbl-mod" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mod-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.4: Regression Model Summary
+</figcaption>
+<div aria-describedby="tbl-mod-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="xgitpfqaff" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xgitpfqaff table {
+<div id="rotblbhxes" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rotblbhxes table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xgitpfqaff thead, #xgitpfqaff tbody, #xgitpfqaff tfoot, #xgitpfqaff tr, #xgitpfqaff td, #xgitpfqaff th {
+#rotblbhxes thead, #rotblbhxes tbody, #rotblbhxes tfoot, #rotblbhxes tr, #rotblbhxes td, #rotblbhxes th {
   border-style: none;
 }
 
-#xgitpfqaff p {
+#rotblbhxes p {
   margin: 0;
   padding: 0;
 }
 
-#xgitpfqaff .gt_table {
+#rotblbhxes .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -555,12 +574,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#xgitpfqaff .gt_caption {
+#rotblbhxes .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xgitpfqaff .gt_title {
+#rotblbhxes .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -572,7 +591,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#xgitpfqaff .gt_subtitle {
+#rotblbhxes .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -584,7 +603,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#xgitpfqaff .gt_heading {
+#rotblbhxes .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -596,13 +615,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#xgitpfqaff .gt_bottom_border {
+#rotblbhxes .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xgitpfqaff .gt_col_headings {
+#rotblbhxes .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -617,7 +636,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#xgitpfqaff .gt_col_heading {
+#rotblbhxes .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -637,7 +656,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#xgitpfqaff .gt_column_spanner_outer {
+#rotblbhxes .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -649,15 +668,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#xgitpfqaff .gt_column_spanner_outer:first-child {
+#rotblbhxes .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xgitpfqaff .gt_column_spanner_outer:last-child {
+#rotblbhxes .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xgitpfqaff .gt_column_spanner {
+#rotblbhxes .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -669,11 +688,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#xgitpfqaff .gt_spanner_row {
+#rotblbhxes .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xgitpfqaff .gt_group_heading {
+#rotblbhxes .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -699,7 +718,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#xgitpfqaff .gt_empty_group_heading {
+#rotblbhxes .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -714,15 +733,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#xgitpfqaff .gt_from_md > :first-child {
+#rotblbhxes .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xgitpfqaff .gt_from_md > :last-child {
+#rotblbhxes .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xgitpfqaff .gt_row {
+#rotblbhxes .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -741,7 +760,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#xgitpfqaff .gt_stub {
+#rotblbhxes .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -754,7 +773,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#xgitpfqaff .gt_stub_row_group {
+#rotblbhxes .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -768,15 +787,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#xgitpfqaff .gt_row_group_first td {
+#rotblbhxes .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xgitpfqaff .gt_row_group_first th {
+#rotblbhxes .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xgitpfqaff .gt_summary_row {
+#rotblbhxes .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -786,16 +805,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#xgitpfqaff .gt_first_summary_row {
+#rotblbhxes .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xgitpfqaff .gt_first_summary_row.thick {
+#rotblbhxes .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xgitpfqaff .gt_last_summary_row {
+#rotblbhxes .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -805,7 +824,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#xgitpfqaff .gt_grand_summary_row {
+#rotblbhxes .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -815,7 +834,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#xgitpfqaff .gt_first_grand_summary_row {
+#rotblbhxes .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -825,7 +844,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#xgitpfqaff .gt_last_grand_summary_row_top {
+#rotblbhxes .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -835,11 +854,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#xgitpfqaff .gt_striped {
+#rotblbhxes .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xgitpfqaff .gt_table_body {
+#rotblbhxes .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -848,7 +867,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#xgitpfqaff .gt_footnotes {
+#rotblbhxes .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -862,7 +881,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#xgitpfqaff .gt_footnote {
+#rotblbhxes .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -871,7 +890,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#xgitpfqaff .gt_sourcenotes {
+#rotblbhxes .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -885,7 +904,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#xgitpfqaff .gt_sourcenote {
+#rotblbhxes .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -893,82 +912,79 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#xgitpfqaff .gt_left {
+#rotblbhxes .gt_left {
   text-align: left;
 }
 
-#xgitpfqaff .gt_center {
+#rotblbhxes .gt_center {
   text-align: center;
 }
 
-#xgitpfqaff .gt_right {
+#rotblbhxes .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xgitpfqaff .gt_font_normal {
+#rotblbhxes .gt_font_normal {
   font-weight: normal;
 }
 
-#xgitpfqaff .gt_font_bold {
+#rotblbhxes .gt_font_bold {
   font-weight: bold;
 }
 
-#xgitpfqaff .gt_font_italic {
+#rotblbhxes .gt_font_italic {
   font-style: italic;
 }
 
-#xgitpfqaff .gt_super {
+#rotblbhxes .gt_super {
   font-size: 65%;
 }
 
-#xgitpfqaff .gt_footnote_marks {
+#rotblbhxes .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xgitpfqaff .gt_asterisk {
+#rotblbhxes .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xgitpfqaff .gt_indent_1 {
+#rotblbhxes .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xgitpfqaff .gt_indent_2 {
+#rotblbhxes .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xgitpfqaff .gt_indent_3 {
+#rotblbhxes .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xgitpfqaff .gt_indent_4 {
+#rotblbhxes .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xgitpfqaff .gt_indent_5 {
+#rotblbhxes .gt_indent_5 {
   text-indent: 25px;
 }
 
-#xgitpfqaff .katex-display {
+#rotblbhxes .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#xgitpfqaff div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#rotblbhxes div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
-<tr class="header gt_heading">
-<th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border">Logistic Regression Summary</th>
-</tr>
-<tr class="odd gt_col_headings">
+<tr class="header gt_col_headings">
 <th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
 <th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">estimate</th>
 <th id="std.error" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">std.error</th>
@@ -979,31 +995,31 @@ window.Quarto = {
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="term">(Intercept)</td>
-<td class="gt_row gt_right" headers="estimate">73.33569595</td>
-<td class="gt_row gt_right" headers="std.error">30.63530078</td>
-<td class="gt_row gt_right" headers="statistic">2.393830</td>
-<td class="gt_row gt_right" headers="p.value">1.667348e-02</td>
+<td class="gt_row gt_right" headers="estimate">96.12473</td>
+<td class="gt_row gt_right" headers="std.error">31.96767</td>
+<td class="gt_row gt_right" headers="statistic">3.007</td>
+<td class="gt_row gt_right" headers="p.value">2.639e-03</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="term">as.numeric(DECK_COND_058)</td>
-<td class="gt_row gt_right" headers="estimate">-2.27199045</td>
-<td class="gt_row gt_right" headers="std.error">0.39158102</td>
-<td class="gt_row gt_right" headers="statistic">-5.802095</td>
-<td class="gt_row gt_right" headers="p.value">6.549127e-09</td>
+<td class="gt_row gt_right" headers="estimate">-1.85350</td>
+<td class="gt_row gt_right" headers="std.error">0.34491</td>
+<td class="gt_row gt_right" headers="statistic">-5.374</td>
+<td class="gt_row gt_right" headers="p.value">7.705e-08</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="term">OPERATING_RATING_064</td>
-<td class="gt_row gt_right" headers="estimate">-0.04438354</td>
-<td class="gt_row gt_right" headers="std.error">0.01956877</td>
-<td class="gt_row gt_right" headers="statistic">-2.268080</td>
-<td class="gt_row gt_right" headers="p.value">2.332433e-02</td>
+<td class="gt_row gt_right" headers="estimate">-0.05243</td>
+<td class="gt_row gt_right" headers="std.error">0.02028</td>
+<td class="gt_row gt_right" headers="statistic">-2.586</td>
+<td class="gt_row gt_right" headers="p.value">9.721e-03</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="term">as.numeric(YEAR_BUILT_027)</td>
-<td class="gt_row gt_right" headers="estimate">-0.03146550</td>
-<td class="gt_row gt_right" headers="std.error">0.01582692</td>
-<td class="gt_row gt_right" headers="statistic">-1.988099</td>
-<td class="gt_row gt_right" headers="p.value">4.680069e-02</td>
+<td class="gt_row gt_right" headers="estimate">-0.04410</td>
+<td class="gt_row gt_right" headers="std.error">0.01653</td>
+<td class="gt_row gt_right" headers="statistic">-2.667</td>
+<td class="gt_row gt_right" headers="p.value">7.645e-03</td>
 </tr>
 </tbody>
 </table>
@@ -1011,33 +1027,24 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>From this model we can see that all variables are significant and should produce accurate results in predicting our response variable on testing data. We will now predict the response on a test data set using this model.</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Value</th>
-<th style="text-align: right;">Frequency</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">0</td>
-<td style="text-align: right;">163</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">1</td>
-<td style="text-align: right;">5</td>
-</tr>
-</tbody>
-</table>
+</figure>
 </div>
 </div>
-<p>From this table produced we can see that we get a majority of our predicted values to be 0 and only a few to be 1. This represents the relationship between the bridges that are at risk of collapse that bridges that are not as risk of collapse. We can see that we are getting similar numbers in our prediction to the values contained in the data set. We will now test the accuracy of the model.</p>
+<p><a href="#tbl-mod" class="quarto-xref">Table&nbsp;<span>3.4</span></a> shows that all variables are significant by having a p.value less than .05. This means that all of the coefficients will be included in the model for prediction. The prediction capabilities of the model were tested by using the predict function in R. This will allow an understanding of how good the model is at predicting the response variable, collapse risk, in the test data set.</p>
+</section>
+</section>
+<section id="prediction-and-model-accuracy" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="prediction-and-model-accuracy"><span class="header-section-number">3.2.2</span> Prediction and Model Accuracy</h3>
+<p>From the model, when used in prediction on the test data set, the model predicts or analyzed that there is 2.38 % of bridges that are at risk of collapse. This is very similar to the value from the overall data which was 4.13 %. This shows the model is representative of the overall data set and the current condition, the final step is to test the accuracy of the model.</p>
 <div class="cell">
+<div id="tbl-acur" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-acur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.5: Accuracy of Regression Model
+</figcaption>
+<div aria-describedby="tbl-acur-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="do-not-create-environment cell table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: right;">Accuracy</th>
@@ -1045,15 +1052,25 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0.9583333</td>
+<td style="text-align: right;">0.9524</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>From this table we can see that our model has a 98% accuracy in predicting our defined collapse variable. Which shows us that we can predict with good accuracy if a bridge is at risk of collapse in Omaha,NE.</p>
+</figure>
+</div>
+</div>
+<p><a href="#tbl-acur" class="quarto-xref">Table&nbsp;<span>3.5</span></a> shows that the model has a 95.2% accuracy in predicting the defined collapse risk variable. Which shows that it can be predicted with good accuracy if a bridge is at risk of collapse in Omaha,NE.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-littleMissingDataAssumptions2021" class="csl-entry" role="listitem">
+Little, Roderick J. 2021. <span>“Missing Data Assumptions.”</span> <em>Annual Review of Statistics and Its Application</em> 8 (1): 89–107. <a href="https://doi.org/10.1146/annurev-statistics-040720-031104">https://doi.org/10.1146/annurev-statistics-040720-031104</a>.
+</div>
+</div>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
