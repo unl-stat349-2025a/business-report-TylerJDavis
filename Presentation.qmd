@@ -1,0 +1,49 @@
+---
+title: "My Presentation"
+format:
+  revealjs:
+    incremental: true   
+---
+
+# Introduction
+
+-   Love is a many spledid things
+
+# methods
+- these are the used method
+
+## graph of omaha bridges
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(tidyverse)
+library(dplyr)
+library(psych)
+library(knitr)
+options(digits = 4)
+omaha_bridges <- read.csv("omaha_bridges.csv")
+
+
+```
+
+```{r}
+#| label: fig-omaha-map1
+#| fig-cap: "Map of Omaha Bridges"
+#| fig-width: 6
+#| fig-height: 4
+#| echo: false
+#| message: false
+#| warning: false
+library(leaflet)
+leaflet(omaha_bridges) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    lng = ~ LONG_017,
+    lat = ~ LAT_016,
+    radius = 5,
+    color = "red",
+    popup = ~paste("Bridge ID:", FACILITY_CARRIED_007)
+  )
+```

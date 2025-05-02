@@ -1,10 +1,9 @@
 ---
 title: "Methods"
-editor: visual
-bibliography: references.bib
+prefer-html: true
 ---
 
-When thinking about how to conduct the analysis on percent chance a bridge collapses in Omaha, NE. The first task was a to find a data set that contained all of the information that we would need, and that was the NTAD National Bridge Inventory. This data set described in the data documentation, allows us to attempt to figure out the main question at had what the percent chance that a bridge will collapse in Omaha, NE. This data set was filtered to contain all bridges in Iowa and Nebraska by the state code variable, it was then filtered again to focus in on the Omaha area. This was done by filter statements in R, using state codes, latitudes, and longitudes. This subset of the NTAD data was then used for the analysis.
+When thinking about how to conduct the analysis on percent chance a bridge collapses in Omaha, NE, we first need to find a data set that contains all of the information that we need. We would like to find information on how the bridge is structurally, how old it is, and how much traffic the bridge has, for example. The data set that was found is the NTAD National Bridge Inventory, which contains a majority of the information stated above and much more. This data set ,described in the data documentation, allows us to attempt to figure out the main question at hand what is the percent chance that a bridge will collapse in Omaha, NE. This data set was filtered to contain all bridges in Iowa and Nebraska by state code, it was then filtered again to focus in on the Omaha area. This was done by filter statements in R, using state codes, latitudes, and longitudes. This subset of the NTAD data was then used for the analysis.
 
 ```{r}
 #| echo: false
@@ -14,8 +13,19 @@ library(tidyverse)
 library(dplyr)
 library(psych)
 library(knitr)
-
+options(digits = 4)
 omaha_bridges <- read.csv("omaha_bridges.csv")
+```
+
+```{r}
+#| label: fig-omaha-map1
+#| fig-cap: "Map of Omaha Bridges"
+#| fig-width: 6
+#| fig-height: 4
+#| echo: false
+#| message: false
+#| warning: false
+#| results: hide
 library(leaflet)
 leaflet(omaha_bridges) %>%
   addTiles() %>%
@@ -26,27 +36,29 @@ leaflet(omaha_bridges) %>%
     color = "red",
     popup = ~paste("Bridge ID:", FACILITY_CARRIED_007)
   )
+
 ```
 
-This map above shows how the data contains all of the bridges in the Omaha, NE area. This is crucial as our task is limited to this area. The next step in our analysis is to further understand what variables within the data set are useful to us. This decision was made by analyzing the code book and understanding which variables give us key insight into the structure, age, traffic, and condition of the bridges. These variables will hopefully lead us to be able to draw a conclusion that meet our goal of predicting a bridge collapse.
+@fig-omaha-map1 above shows how the data contains all of the bridges in the Omaha, NE area. This is crucial as our task is limited to this area. This map also gives us a broader idea of how bridges are distributed across Omaha, NE allowing us to assess the risk for each area. The next step in our analysis is to further understand what variables within the data set are useful to us. This decision was made by analyzing the code book and understanding which variables give us key insight into the structure, age, traffic, and condition of the bridges. These variables will hopefully lead us to be able to draw a conclusion that meet our goal of predicting a bridge collapse.
 
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
+
+options(digits = 4)
 fil_dat <- omaha_bridges %>%
   select(c(1,2,5,14,21,22,25, 28:29,31:32, 68:77,88,103,107,112,116, 122:125))
-library(magrittr)
-desc_dat <- data.frame(variable = names(fil_dat),
-           classes = sapply(fil_dat, typeof),
-           first_values = sapply(fil_dat, function(x) paste0(head(x),  collapse = ", ")),
-           row.names = NULL)
-kable(desc_dat)
+
 ```
 
-This table above shows the variables from the data set that will be used to analyze the data as they describe key components about each bridge. We next analyzed the variables that saw that bridge condition was a variable that describes the overall condition of the bridge, which has rating of "P" for poor, "G" for good, and "F" for fair. Bridge condition rating is determined by, " the lowest rating of National Bridge Inventory (NBI) condition ratings for Item 58 (Deck), Item 59 (Superstructure), Item 60 (Substructure), or Item 62 (Culvert). If the lowest rating is greater than or equal to 7, the bridge is classified as Good; if it is less than or equal to 4, the classification is Poor. Bridges rated 5 or 6 are classified as Fair.", @wesemanRecordingCodingGuide. This allows us to looks at the overall condition of the bridge by looking primarily at one variable.
+There are 130 variables in the NTAD Bridge Inventory data set, some of variables that we will be using are: bridge condition, substructure and superstructure condition, average daily traffic, and year built. These variables give us a good picture of what it means to be a stable and healthy bridge and also what it means to be a bridge on the verge of collapse. We next analyzed the variable bridge condition, which is a variable that describes the overall condition of the bridge, which has rating of "P" for poor, "G" for good, and "F" for fair. Bridge condition rating is determined by, " the lowest rating of National Bridge Inventory (NBI) condition ratings for Item 58 (Deck), Item 59 (Superstructure), Item 60 (Substructure), or Item 62 (Culvert). If the lowest rating is greater than or equal to 7, the bridge is classified as Good; if it is less than or equal to 4, the classification is Poor. Bridges rated 5 or 6 are classified as Fair.", @wesemanRecordingCodingGuide. This allows us to looks at the overall condition of the bridge by looking primarily at one variable.
 
 ```{r}
+#| label: fig-brid
+#| fig-cap: "Bridge Condtion Ratings Across Omaha, NE"
+#| fig-width: 6
+#| fig-height: 4
 #| echo: false
 #| message: false
 #| warning: false
@@ -56,7 +68,7 @@ ggplot(fil_dat,aes(x = BRIDGE_CONDITION)) + geom_bar() + labs(title ="Bridge Con
 
 ```
 
-Here we can see the overall breakdown of how the bridge condition variable is broken down. We now want to take a closer look into what bridges are rated with a condition as "P" or poor.
+In @fig_brid we can see the overall breakdown of how the bridge condition variable. When first looking at this graph we can see that a majority of the bridges in Omaha are in good or fair condition. This is great but, we now want to take a closer look into the bridges that have a poor rating.
 
 ```{r}
 #| echo: false
@@ -64,7 +76,17 @@ Here we can see the overall breakdown of how the bridge condition variable is br
 #| warning: false
 fil_dat <- fil_dat %>%
   mutate(across(everything(), ~ ifelse(. == "N", NA, .)))
+```
 
+```{r}
+#| label: fig-omaha-map
+#| fig-cap: "Map of Omaha Bridges in 'Poor' Condtion"
+#| fig-width: 6
+#| fig-height: 4
+#| echo: false
+#| message: false
+#| warning: false
+#| results: hide
 bridge_cond <- fil_dat %>%
  filter(
    BRIDGE_CONDITION == "P"
@@ -83,13 +105,17 @@ leaflet(bridge_cond) %>%
   )
 ```
 
-This graph above shows us the distribution of bridges across Omaha, NE, that have a bridge condition rating of poor. This gives us a good understanding of the bridges at most risk of collapse right now. Another factor that might play a role on if a bridge collapses would be how much traffic a bridge takes in per day. We then created another subset of data from the bridges that have poor condition, and added that the average daily traffic must be greater than 5000 and that is must have over two lanes. This will give us a good picture of major bridges in Omaha, NE that are at risk of collapse that could impact that most people.
+@fig-omaha-map above shows us the distribution of bridges across Omaha, NE, that have a bridge condition rating of poor. This gives us a good understanding of the bridges at most risk of collapse right now. We can see in @fig-omaha-map that some of the bridges that are at most risk of collapse are in downtown Omaha, which could lead to major economic and logistical issues. The economic impact of a bridge collapse is a important one to consider as it can impact the severity of the incident. Another factor that might play a role on if a bridge collapses would be how much traffic a bridge takes in per day. We then created another subset of data from the bridges that have poor condition, and added that the average daily traffic must be greater than 5,000 cars and that is must have over two lanes. This will give us a good picture of major bridges in Omaha, NE that are at risk of collapse that could impact that most people.
 
 ```{r}
+#| label: fig-omaha-map2
+#| fig-cap: "Map of Omaha Bridges in 'Poor' Condtion and with High Traffic"
+#| fig-width: 6
+#| fig-height: 4
 #| echo: false
 #| message: false
 #| warning: false
-
+#| results: hide
 high_traffic <- bridge_cond %>%
   filter (
     ADT_029 > 5000 & TRAFFIC_LANES_ON_028A > 2
@@ -105,6 +131,6 @@ leaflet(high_traffic) %>%
   )
 ```
 
-This graph above show us the distributed of bridges with a poor condition that undergo high traffic scenarios each day. These bridges could possibly be at higher risk for collapse due to the increase of traffic.
+@fig-omaha-map2 above show us the distributed of bridges with a poor condition that undergo high traffic scenarios each day. These bridges could possibly be at higher risk for collapse due to the increase of traffic. When looking at the map above we can also see that none of these bridges are located over bridges which may mitigate the damage and economic impact of a collapse. We can also see that of the bridges that are at a poor rating and have high traffic none are downtown Omaha, which again could limit the economic impact of a collapse.
 
 Statistical analysis was then conducted, first by analyzing the descriptive statistics of both the bridge condition subset and the high traffic subset. This was then extended by finding the percent of bridges that are at a poor condition and poor condition with high traffic respectively. This gave us a basic understanding of what the overall condition was currently. We then had to create a method of prediction, which was done by fitting a linear model. The missing values in the data set were a concern which lead to imputation methods being used by way of the "VIM" package in R. This then allowed us to analyze the data using a linear model creating a method of prediction of when a bridge would collapse in Omaha, NE.
