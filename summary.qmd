@@ -9,3 +9,9 @@ editor:
 ## Inroduction
 
 Have you ever driven over a bridge and wondered how stable it is? With U.S. infrastructure recently receiving its highest-ever grade of a C, concerns remain about long-term safety and reliability. High-profile failures like the 2024 collapse of the Francis Scott Key Bridge in Baltimore and the 2007 I-35W Bridge in Minneapolis highlight the risks and consequences of aging structures. The National Transportation Safety Board has since identified 68 bridges at high risk of collapse from vessel strikes, with the Key Bridge found to be nearly 30 times over the acceptable risk threshold. In Nebraska, 8.8% of bridges are structurally deficient, and 149 dams pose high hazard potential, raising questions about local infrastructure—especially in Omaha, NE. This report analyzes bridge condition data from the National Bridge Inventory, focusing on Omaha and surrounding areas, to assess the probability of bridge collapse using condition-based variables and predictive modeling.
+
+## Methods
+
+## Results
+ 
+## Conclusion
