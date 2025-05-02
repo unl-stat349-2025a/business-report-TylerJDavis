@@ -7,7 +7,7 @@ title: "Results"
 #| message: false
 #| warning: false
 #| results: hide
-
+options(digits = 4)
 library(tidyverse)
 library(dplyr)
 library(psych)
@@ -27,7 +27,7 @@ bridge_cond1 <- fil_dat %>%
  filter(
    BRIDGE_CONDITION == "P"
  ) %>%
-   select(c(1,8,9,10,12:16,21,26,27))
+   select(c(8,9,10,12:16,21,26,27))
 
 high_traffic <- bridge_cond1 %>%
   filter (
@@ -38,55 +38,86 @@ desc_brid_cond <- describe(bridge_cond1)
 desc_h_t <- describe(high_traffic)
 ```
 
-The first step to the formal analysis is to find the descriptive statistics from the bridges that are in poor condition.
+## Descriptive Statistics
+
+The first step of the analysis was finding descriptive statistics of subsets of data. The subsets that were used are bridges in Omaha that are in poor condition along with bridges with high traffic in poor condition.
+
+### Descriptive Statistics: Bridges in Omaha that are in Poor Condition
 
 ```{r}
+#| label: tbl-bridge-stats
+#| tbl-cap: "Descriptive statistics of bridges in poor condition"
 #| echo: false
 #| message: false
-#| warning: false
-kable(desc_brid_cond[, c("mean", "sd", "n","median","se")], caption = "Bridges with Poor Rating Descriptive Statistics")
+
+desc_brid_cond %>%
+  select(mean, sd, n, median) %>%
+  mutate(across(c(mean, sd, median), ~ format(round(.x, 3), scientific = FALSE))) %>%
+  kable()
 
 
 ```
 
-From the table above we can see that the average year of the bridges built in Omaha, NE is 1955. We can also see fro this data that all of our structural condition ratings are low as the average is below 4 which tells us that the structural condition of the all of these bridges is below par. We can also see that the average daily traffic(ADT_029) median is 2,027 cars per day. We will now look at the descriptive statistics for the high traffic data subset.
+@tbl-bridge-stats shows that the average year of the bridges built in Omaha, NE was `r signif(desc_brid_cond$mean[1],4)`. This data also shows that all of the structural condition ratings are low, as the average is shockingly below 4 (out of 10). Also, the average daily traffic (ADT_029) mean is `r format(signif(desc_brid_cond$mean[3],4),scientific = FALSE)` cars per day.
+
+### Descriptive Statistics: Bridges in Omaha that are in Poor Condition and have High Traffic
 
 ```{r}
+#| label: tbl-bridge-stats1
+#| tbl-cap: "High Traffic Bridges with Poor Rating"
 #| echo: false
 #| message: false
 #| warning: false
-kable(desc_h_t[, c("mean", "sd", "n","median","se")], caption = "High Traffic Bridges with a Rating of Poor")
+desc_h_t %>%
+  select(mean, sd, n, median) %>%
+  mutate(across(c(mean, sd, median),~ format(round(.x, 3), scientific = FALSE)))%>%
+  kable()
 ```
 
-These bridges are at risk of collapse and they also have the highest traffic flow among at risk bridges. These bridges are further at risk due to the fact that the mean percentage of truck traffic is 26% which is very high compared to most bridges in Omaha, NE. We can see this in the descriptive statistics as the mean of the structural conditions is below 3 which is lower than if the bridges were just at poor condition. We can also see that the average year built of the bridges is slightly newer at 1969. Finally, we can see that median of the average daily traffic is 34353 which is much higher than the previous subset. The next step is to look at the proportion of bridges in Omaha that have a poor condition and that have a poor condition under high traffic.
+These bridges displayed in @tbl-bridge-stats1 are at risk of collapse and they also have the highest traffic flow among at risk bridges. These bridges are further at risk due to the fact that the mean average daily traffic is `r format(signif(desc_h_t$mean[3],4),scientific = FALSE)` which is very high compared to most bridges in Omaha, NE. It can be shown form the descriptive statistics that the mean of the structural conditions is below 3 which is lower than if the bridges were at poor condition. It can also be seen that the average year built is slightly newer at `r signif(desc_h_t$mean[1],4)` than bridges that are not high traffic. Finally, we can see that median of the average number of lanes is `r signif(desc_h_t$mean[2],3)` which is much higher than the previous subset. The next step is to look at the proportion of bridges in Omaha that have a poor condition and that have a poor condition under high traffic.
+
+### Proportion of Bridges in Poor Condition
 
 ```{r}
+#| label: tbl-per
+#| tbl-cap: "Proportion of Bridges at Risk in all of Omaha, NE"
 #| echo: false
 #| message: false
 #| warning: false
+options(digits = 4)
 percents <- data.frame(
   "bridges at risk" = nrow(bridge_cond1)/nrow(fil_dat),
   "High traffic bridges at risk" = nrow(high_traffic)/nrow(fil_dat))
 kable(percents, col.names = c("Bridges at Risk", "High Traffic Bridges at Risk"))
 ```
 
-From this table we can see that the percent chance that a bridge in Omaha, NE is in poor condition is 5%. Along with that, the percent chance that a bridge in poor condition has high traffic is 1.4%. This tells us that we have a minimal chance of coming across a bridge that is at risk of collapse by structural ratings. This was a solution primarily based on descriptive statistics, we will now create a statistical model to predict a collapse of a bridge. To do this task we must create a collapse variable. This will be done by creating a binary variable that depends on if the bridge condition is poor and is the structural evaluation of the bridge in less than 4. These two variables give us the best insight into if a bridge is at risk of collapse, hence they will be used to create the variable. The data that we have also contains many "NA" values, to take care of this issue will will impute the data, or estimate values for the "NA" values based on information in the data set. The new imputed data set is what we will use to form our model.
+@tbl-per shows that the percent chance that a bridge in Omaha, NE is in poor condition is `r signif(100*percents$bridges.at.risk,3)` %. Along with that, the percent chance that a bridge in poor condition has high traffic is `r signif(100*percents$High.traffic.bridges.at.risk,3)`%. This tells us that there is a minimal chance of coming across a bridge that is at risk of collapse by structural ratings. This was a solution primarily based on descriptive statistics, the next step is to develop a model.
 
-The model we will use will be the following:
+## Statistical Model and Analysis
+
+To do this task a collapse variable was created. This will be done by creating a binary variable that depends on if the bridge condition is poor and if the structural evaluation of the bridge in less than 4. These two variables give the best insight into if a bridge is at risk of collapse, hence they will be used to create the response variable for the model. The data that also contains many "NA" values, to take care of this issue the data will be imputed, or estimated values for the "NA" 's will be formed based on information in the data set. The new imputed data set is what will be used to form the model @littleMissingDataAssumptions2021.\
+
+### Generalized Linear Model
+
+The model used will be the following:
 
 $$
-\log\left(\frac{P(\text{collapse_risk} = 1)}{1 - P(\text{collapse_risk} = 1)}\right) 
-= \beta_0 + \beta_1 \cdot \text{DECK_COND_058} + \beta_2 \cdot \text{OPERATING_RATING_064} 
-+ \beta_3 \cdot \text{YEAR_BUILT_027}
+\log\left( \frac{P(\text{collapse\_risk} = 1)}{1 - P(\text{collapse\_risk} = 1)} \right) 
+= \beta_0 + \beta_1 \cdot \text{DECK\_COND\_058} + \beta_2 \cdot \text{OPERATING\_RATING\_064} 
++ \beta_3 \cdot \text{YEAR\_BUILT\_027}
 $$
 
-The model above is a generalized linear model, as our response variable is non - normal ( Binomial), this is done using the logit link function.
+The model above is a generalized linear model, as the response variable is non - normal ( Binomial), a normal linear model can not be used. The modification is done by using the logit link function. From this model the regression coefficient estimates will be obtained to use for prediction when the next bridge will collapse. The regression coefficients will be found using a training subset of the data (80% of the rows), which will be found using the caret package. This will then allow us to test the prediction capabilities of our model using the remaining 20% of our data, the test data set.
+
+#### Coefficient Estimates
 
 ```{r}
+#| label: tbl-mod
+#| tbl-cap: "Regression Model Summary"
 #| echo: false
 #| message: false
 #| warning: false
-
+options(digits = 4)
 Omaha <- fil_dat %>%
   mutate(collapse_risk = ifelse(BRIDGE_CONDITION == "P" & STRUCTURAL_EVAL_067 <= 4, 1, 0)) %>%
   select(c(1,8,12,18,26,31))
@@ -114,32 +145,37 @@ library(gt)
 library(broom)
 
 tidy(model1) %>%
-  gt() %>%
-  tab_header(
-    title = "Logistic Regression Summary"
-  )
+  gt()
 
 ```
 
-From this model we can see that all variables are significant and should produce accurate results in predicting our response variable on testing data. We will now predict the response on a test data set using this model.
+@tbl-mod shows that all variables are significant by having a p.value less than .05. This means that all of the coefficients will be included in the model for prediction. The prediction capabilities of the model were tested by using the predict function in R. This will allow an understanding of how good the model is at predicting the response variable, collapse risk, in the test data set.
+
+### Prediction and Model Accuracy
 
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
+options(digits = 4)
 predicted_probabilities <- predict(model1, newdata = test_data, type = "response")
 
 predicted_classes <- ifelse(predicted_probabilities > 0.5, 1, 0)
-kable(table(predicted_classes),col.names = c("Value","Frequency"))
+
+prop_pred <- mean(predicted_classes)
+omaha_c <- mean(Omaha$collapse_risk)
 
 ```
 
-From this table produced we can see that we get a majority of our predicted values to be 0 and only a few to be 1. This represents the relationship between the bridges that are at risk of collapse that bridges that are not as risk of collapse. We can see that we are getting similar numbers in our prediction to the values contained in the data set. We will now test the accuracy of the model.
+From the model, when used in prediction on the test data set, the model predicts or analyzed that there is `r signif(100*prop_pred,3)` % of bridges that are at risk of collapse. This is very similar to the value from the overall data which was `r signif(100*omaha_c,3)` %. This shows the model is representative of the overall data set and the current condition, the final step is to test the accuracy of the model.
 
 ```{r}
+#| label: tbl-acur
+#| tbl-cap: "Accuracy of Regression Model"
 #| echo: false
 #| message: false
 #| warning: false
+options(digits = 4)
 # Actual values
 actual_classes <- test_data$collapse_risk
  # Compare predicted vs actual values
@@ -149,4 +185,4 @@ accuracy <- mean(predicted_classes == actual_classes)
 kable(accuracy,col.names = c("Accuracy"))
 ```
 
-From this table we can see that our model has a 98% accuracy in predicting our defined collapse variable. Which shows us that we can predict with good accuracy if a bridge is at risk of collapse in Omaha,NE.
+@tbl-acur shows that the model has a `r signif(100*accuracy,3)`% accuracy in predicting the defined collapse risk variable. Which shows that it can be predicted with good accuracy if a bridge is at risk of collapse in Omaha,NE.

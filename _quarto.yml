@@ -8,7 +8,6 @@ book:
   page-footer:
     left: "Copyright 2025, Tyler Davis"
   chapters:
-    - index.qmd
     - introduction.qmd
     - Methods.qmd
     - draft-results.qmd
@@ -17,8 +16,7 @@ book:
     - references.qmd
   appendices:
     - draft-data-doc.qmd
-    - draft-intro-conclusions.qmd
-    - draft-exec-summary.qmd
+    - index.qmd
 
 bibliography: references.bib
 

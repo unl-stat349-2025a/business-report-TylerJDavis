@@ -108,12 +108,6 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
@@ -160,19 +154,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./draft-data-doc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Draft: Data Documentation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Data Documentation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./draft-intro-conclusions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Draft: Intro/Conclusions</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./draft-exec-summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Draft: Executive Summary</span></span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Description</span></a>
   </div>
 </li>
       </ul>
@@ -207,8 +195,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>When looking back at the opening question, do you ever think of how stable a bridge is when you are driving over top of it, the answer would be hopefully not. This is because in our analysis we have found that 5% of the bridges in the Omaha,NE area have a bridge rating of “poor”. We have also see that 1.4 % of bridges are considered high traffic bridges and also have a “poor” rating. This tells us that in Omaha, NE if you took a random sample of 100 bridges, 5 would come out with a “poor” rating. This is a major issue highlighting the lack of infrastructure maintenance and repair in our country. This is a future concern and with bridges and roads only getting older it is time to put more money and research into how to maintain our aging infrastructure. This lead to further investigation using the National Bridge Inventory data set which lead us to create a collapse variable based on important variables and then try to predict, from the data we have, which bridges are at most risk of collapse. The model we developed predicted our collapse variable with 98% accuracy showing that with this data set there is the ability to predict which bridges are at most risk of collapse. The predicted percentage of bridges that were at risk of collapse was the a very similar percentage to the percentage in our actual data.</p>
-<p>Some issues with the data set are that there are a lot of missing values this was difficult to handle especially with the amount of variables that we have in our data set. This forced us to use imputation methods to estimate our missing values, this allowed us to use much more of our data than if we did not do this. Some future implications of this analysis and data, would be taking similar approaches to see which bridges are in the worst condition. This will allow governments to allocate resources to the proper locations creating more understanding in which bridges need the most work.</p>
+<p>When looking back at the opening question, do you ever think of how stable a bridge is when you are driving over top of it, the answer would be hopefully not. This is because in the analysis we have found that 4.96% of the bridges in the Omaha,NE area have a bridge rating of “poor”. We have also see that 1.42% of bridges are considered high traffic bridges and also have a “poor” rating. This shows that in Omaha, NE if you took a random sample of 100 bridges, 5 would come out with a “poor” rating. This is a major issue highlighting the lack of infrastructure maintenance and repair in the country. This is a future concern and with bridges and roads only getting older it is time to put more money and research into how to maintain the aging infrastructure.</p>
+<p>This prompted further investigation using the National Bridge Inventory data set which lead to the creation of a collapse variable based on summary variables and the formation of a generalized linear model. This was done to try and estimate the proportion of bridges that are at risk of collapse. The model estimated that 2.38 % of bridges in Omaha are at risk of collapse. This is similar to what was found in the descriptive statistics and was predicted with a 94.6% accuracy.</p>
+<p>Some issues that occur in the analysis is that there is no speicifically defined cirteria for if a bridge is going to collapse. This creates a issue when trying to predict or catagorize if a bridge will collapse. This lead to the analyzing the descriptive statistics while also formulating a variable that catagoirzed risk of collapse. This collapse variable was formed from two variables that were summary variables in themselves of bridge condition and structure. This lead to a variable that in many ways catagorized the risk of collapse. The data set itself contains a lot of missing values, which is difficult to deal with hence when the model was created an imputed data set was used so that those missing values were then estimated.</p>
+<p>Future implications of this research is using this model to further categorize bridges as at risk or needing attention. This will allow researchers to quickly evaluate if a bridge is in need of attention. This could allow government official to act quicker if they know the proportion of bridges that are at risk in there district or state. This will also lead to more economical solution as if at risk bridges can be identified then there will not be a need to fix collapsed bridges if action is taken. Overall, the main product of this analysis is that bridges are not in good condition and money need to be allocated to help mend and fix bridges so that we do not have another collapse in a major city like the Francis Scott Key Bridge in Baltimore, MD.</p>
 
 
 
