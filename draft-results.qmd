@@ -17,7 +17,7 @@ library(psych)
 omaha_bridges <- read.csv("omaha_bridges.csv")
 
 fil_dat <- omaha_bridges %>%
-  select(c(1,2,5,15,21,22,25, 28:29,31:32, 68:77,88,103,107,112,116, 122:125))
+  select(c(1,2,5,14,21,22,25, 28:29,31:32, 68:77,88,103,107,112,116, 122:125))
 col <- data.frame(colnames(fil_dat))
 
 fil_dat <- fil_dat %>%

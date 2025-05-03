@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -256,7 +236,7 @@ Figure&nbsp;2.1: Map of Omaha Bridges
 </section>
 <section id="description-of-data" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="description-of-data"><span class="header-section-number">2.2</span> Description of Data</h2>
-<p>There are 130 variables in the NTAD Bridge Inventory data set, some of variables that will be used are: bridge condition, substructure and superstructure condition, average daily traffic, and year built. These variables give a good picture of what it means to be a stable and healthy bridge and also what it means to be a bridge on the verge of collapse. Next the variable bridge condition was analyzed, which is a variable that describes the overall condition of the bridge, which has rating of “P” for poor, “G” for good, and “F” for fair. Bridge condition rating is determined by, ” the lowest rating of National Bridge Inventory (NBI) condition ratings for Item 58 (Deck), Item 59 (Superstructure), Item 60 (Substructure), or Item 62 (Culvert). If the lowest rating is greater than or equal to 7, the bridge is classified as Good; if it is less than or equal to 4, the classification is Poor. Bridges rated 5 or 6 are classified as Fair.”, <span class="citation" data-cites="wesemanRecordingCodingGuide">Weseman (<a href="references.html#ref-wesemanRecordingCodingGuide" role="doc-biblioref">n.d.</a>)</span>. This allows the analysis of the overall condition of the bridge by looking primarily at one variable to occur.</p>
+<p>There are 130 variables in the NTAD Bridge Inventory data set, some of variables that will be used are: bridge condition, substructure and superstructure condition, average daily traffic, and year built. These variables give a good picture of what it means to be a stable and healthy bridge and also what it means to be a bridge on the verge of collapse. Next the variable bridge condition was analyzed, which is a variable that describes the overall condition of the bridge, which has rating of “P” for poor, “G” for good, and “F” for fair. Bridge condition rating is determined by, ” the lowest rating of National Bridge Inventory (NBI) condition ratings for Item 58 (Deck), Item 59 (Superstructure), Item 60 (Substructure), or Item 62 (Culvert). If the lowest rating is greater than or equal to 7, the bridge is classified as Good; if it is less than or equal to 4, the classification is Poor. Bridges rated 5 or 6 are classified as Fair.”, <span class="citation" data-cites="wesemanRecordingCodingGuide">(<a href="references.html#ref-wesemanRecordingCodingGuide" role="doc-biblioref"><strong>wesemanRecordingCodingGuide?</strong></a>)</span>. This allows the analysis of the overall condition of the bridge by looking primarily at one variable to occur.</p>
 <section id="understanding-bridge-condition-variable" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="understanding-bridge-condition-variable"><span class="header-section-number">2.2.1</span> Understanding Bridge Condition Variable</h3>
 <div class="cell">
@@ -273,7 +253,7 @@ Figure&nbsp;2.2: Bridge Condtion Ratings Across Omaha, NE
 </div>
 </div>
 </div>
-<p>In <a href="#fig-omaha-brid" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> we can see the overall breakdown of how the bridge condition variable. When first looking at this graph, it shows that a majority of the bridges in Omaha are in good or fair condition. Next, a closer look was taken into the bridges that have a poor rating.</p>
+<p>In <a href="summary.html#fig-omaha-brid" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> we can see the overall breakdown of how the bridge condition variable. When first looking at this graph, it shows that a majority of the bridges in Omaha are in good or fair condition. Next, a closer look was taken into the bridges that have a poor rating.</p>
 <section id="bridges-in-omaha-that-have-a-rating-of-poor" class="level4" data-number="2.2.1.1">
 <h4 data-number="2.2.1.1" class="anchored" data-anchor-id="bridges-in-omaha-that-have-a-rating-of-poor"><span class="header-section-number">2.2.1.1</span> Bridges in Omaha that have a Rating of Poor</h4>
 <div class="cell">
@@ -315,11 +295,6 @@ Figure&nbsp;2.4: Map of Omaha Bridges in ‘Poor’ Condtion and with High Traff
 <p>Statistical analysis was then conducted, first by analyzing the descriptive statistics of both the bridge condition subset and the high traffic subset. This was then extended by finding the percent of bridges that are at a poor condition and poor condition with high traffic respectively. This gives a basic understanding of what the overall condition currently is. A method of prediction was then needed, which was done by fitting a linear model. The missing values in the data set were a concern which lead to imputation methods being used by way of the “VIM” package in R. This then allowed data to be analyzed using a linear model, creating a method of prediction of when a bridge would collapse in Omaha, NE.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-wesemanRecordingCodingGuide" class="csl-entry" role="listitem">
-Weseman, William A. n.d. <span>“Recording and Coding Guide.”</span>
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->

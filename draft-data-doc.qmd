@@ -12,11 +12,11 @@ Description listed on website:
 
 The NBI is published annually but its publication location varies. The 2024 (most recent) NBI is published with a map viewer as part of the Bureau of Transportation Statistics National Transportation Atlas Database. The data set is also published through FHWA’s Bridges & Structures site.
 
-The National Bridge Inventory can support resilience analysis and detour planning efforts. It provides bridge location, design load and clearance, roadway geometry, rating, posting and structural evaluations, number of lanes, traffic counts, among other variables." @NationalBridgeInventory
+The National Bridge Inventory can support resilience analysis and detour planning efforts. It provides bridge location, design load and clearance, roadway geometry, rating, posting and structural evaluations, number of lanes, traffic counts, among other variables." @NationalBridgeInventory2024
 
 Detailed information:
 
-This data is located on a csv file in excel. It contains 116 variables describing various aspects of bridges. I will be focusing my analysis on variables 1,4,5,21, 28-29, 57 - 67,109,113-115. These variables and all information regarding analysis and coding can be found in the code book, @wesemanRecordingCodingGuide.
+This data is located on a csv file in excel. It contains 116 variables describing various aspects of bridges. I will be focusing my analysis on variables 1,4,5,21, 28-29, 57 - 67,109,113-115. These variables and all information regarding analysis and coding can be found in the code book, @wesemanRecordingCodingGuide2023.
 
 Process:
 

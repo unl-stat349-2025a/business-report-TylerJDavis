@@ -1,17 +1,204 @@
 ---
-editor: 
-  markdown: 
-    wrap: 72
+title: "Summary"
+editor: visual
 ---
 
-# Summary
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| results: hide
+options(digits = 4)
+library(tidyverse)
+library(dplyr)
+library(psych)
+library(knitr)
+library(psych)
 
-## Inroduction
+omaha_bridges <- read.csv("omaha_bridges.csv")
 
-Have you ever driven over a bridge and wondered how stable it is? With U.S. infrastructure recently receiving its highest-ever grade of a C, concerns remain about long-term safety and reliability. High-profile failures like the 2024 collapse of the Francis Scott Key Bridge in Baltimore and the 2007 I-35W Bridge in Minneapolis highlight the risks and consequences of aging structures. The National Transportation Safety Board has since identified 68 bridges at high risk of collapse from vessel strikes, with the Key Bridge found to be nearly 30 times over the acceptable risk threshold. In Nebraska, 8.8% of bridges are structurally deficient, and 149 dams pose high hazard potential, raising questions about local infrastructure—especially in Omaha, NE. This report analyzes bridge condition data from the National Bridge Inventory, focusing on Omaha and surrounding areas, to assess the probability of bridge collapse using condition-based variables and predictive modeling.
+fil_dat <- omaha_bridges %>%
+  select(c(1,2,5,14,21,22,25, 28:29,31:32, 68:77,88,103,107,112,116, 122:125))
+col <- data.frame(colnames(fil_dat))
+
+fil_dat <- fil_dat %>%
+  mutate(across(everything(), ~ ifelse(. == "N", NA, .)))
+
+```
+
+## Introduction
+
+Have you ever driven over a bridge and wondered how stable it is? The U.S.recently received its highest-ever infrastructure grade of a C, concerns remain about long-term safety and reliability, @NebraskaInfrastructureReport2025. High-profile failures like the 2024 collapse of the Francis Scott Key Bridge in Baltimore and the 2007 I-35W Bridge in Minneapolis highlight the risks and consequences of aging structures, @deletterBaltimoresKeyBridge2024. The National Transportation Safety Board has since identified 68 bridges at high risk of collapse from vessel strikes, with the Key Bridge found to be nearly 30 times over the acceptable risk threshold, @NTSBRecommends682025. In Nebraska, 8.8% of bridges are structurally deficient, and 149 dams pose high hazard potential, raising questions about local infrastructure—especially in Omaha, NE. This report analyzes bridge condition data from the National Bridge Inventory, focusing on Omaha and finding the proportion of bridges that are at most risk of collapse. Assessing the probability of bridge collapse will be done by using condition-based variables and predictive modeling.
 
 ## Methods
 
+When looking at the national bridge inventory data, the first task is to get an overall picture of the bridges in Omaha, NE that are in poor condition, according to the bridge condition variable in the data set. This variable describes the bridge structural condition as good, fair, or poor; based on the bridge's structural condition ratings.
+
+```{r}
+#| label: fig-omaha-brid
+#| fig-cap: "Bridge Condtion Ratings Across Omaha, NE"
+#| fig-width: 6
+#| fig-height: 4
+#| echo: false
+#| message: false
+#| warning: false
+library(ggplot2)
+
+ggplot(fil_dat,aes(x = BRIDGE_CONDITION)) + geom_bar() + labs(title ="Bridge Condition") + xlab("Bridge Rating") + ylab("Number of Bridges")
+```
+
+@fig-omaha-brid shows the distribution of the bridge condition variable and how many bridges in the Omaha area have a rating of poor. The next step is to get a visual representation of the bridges that are in poor condition in Omaha, NE.
+
+```{r}
+#| label: fig-omaha-map
+#| fig-cap: "Map of Omaha Bridges in 'Poor' Condtion"
+#| fig-width: 6
+#| fig-height: 4
+#| echo: false
+#| message: false
+#| warning: false
+bridge_cond <- fil_dat %>%
+ filter(
+   BRIDGE_CONDITION == "P"
+ ) %>%
+   select(c(1,4,5,6,8,9:21,29,27,23))
+
+library(leaflet)
+leaflet(bridge_cond) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    lng = ~ LONG_017,
+    lat = ~ LAT_016,
+    radius = 5,
+    color = "red",
+    popup = ~paste("Bridge ID:", FACILITY_CARRIED_007)
+  )
+
+```
+
+@fig-omaha-map shows the visual distribution of the bridges that are in poor condition and gives a good understanding of the bridges at most risk of collapse right now. @fig-omaha-map shows that some of the bridges that are at most risk of collapse are in downtown Omaha, which could lead to major economic and logistical issues. The economic impact of a bridge collapse is important for one to consider as it can impact the severity of the incident. The next step is looking at bridges that have high traffic and are in poor condition. The statistical analysis can then take place by finding proportion of bridges that are in poor condition can then be compared to the bridges that are in poor condition and have high traffic. The analysis will continue with create a linear model to predict bridge collapse and finally comparing the models predicted results to figure out its accuracy.
+
 ## Results
+
+The first step of the analysis is to find the descriptive statistics of the bridges that are in poor condition.
+
+```{r}
+#| label: tbl-bridge-stats
+#| tbl-cap: "Descriptive statistics of bridges in poor condition"
+#| echo: false
+#| message: false
+
+bridge_cond1 <- fil_dat %>%
+ filter(
+   BRIDGE_CONDITION == "P"
+ ) %>%
+   select(c(8,9,10,12:16,21,26,27))
+
+high_traffic <- bridge_cond1 %>%
+  filter (
+    ADT_029 > 5000 & TRAFFIC_LANES_ON_028A > 2
+  )
+
+desc_brid_cond <- describe(bridge_cond1)
+desc_h_t <- describe(high_traffic)
+
+desc_brid_cond %>%
+  select(mean, sd, n, median) %>%
+  mutate(across(c(mean, sd, median), ~ format(round(.x, 3), scientific = FALSE))) %>%
+  kable()
+```
+
+@tbl-bridge-stats shows that the average year of the bridges built in Omaha, NE was `r signif(desc_brid_cond$mean[1],4)`. This data also shows that all of the structural condition ratings are low, as the average is shockingly below 4 (out of 10). Also, the average daily traffic (ADT_029) mean is `r format(signif(desc_brid_cond$mean[3],4),scientific = FALSE)` cars per day. The proportion of bridges that are in poor condition and poor condition with high traffic will show the severity of the infrastructure issue in Omaha, NE.
+
+```{r}
+#| label: tbl-per
+#| tbl-cap: "Proportion of Bridges at Risk in all of Omaha, NE"
+#| echo: false
+#| message: false
+#| warning: false
+options(digits = 4)
+percents <- data.frame(
+  "bridges at risk" = nrow(bridge_cond1)/nrow(fil_dat),
+  "High traffic bridges at risk" = nrow(high_traffic)/nrow(fil_dat))
+kable(percents, col.names = c("Bridges at Risk", "High Traffic Bridges at Risk"))
+```
+
+@tbl-per shows that the percent chance that a bridge in Omaha, NE is in poor condition is `r signif(100*percents$bridges.at.risk,3)` %. Along with that, the percent chance that a bridge in poor condition has high traffic is `r signif(100*percents$High.traffic.bridges.at.risk,3)`%. This tells us that there is a minimal chance of coming across a bridge that is at risk of collapse by structural ratings. This was a solution primarily based on descriptive statistics, the next step is to develop a model. To do this task a collapse variable was created. This will be done by creating a binary variable that depends on if the bridge condition is poor and if the structural evaluation of the bridge in less than 4. These two variables give the best insight into if a bridge is at risk of collapse, hence they will be used to create the response variable for the model. An imputed estimation of missing values was used to form this model as the original data set contained many "NA" values.
+
+The model is the following:
+
+$$
+\log\left( \frac{P(\text{collapse\_risk} = 1)}{1 - P(\text{collapse\_risk} = 1)} \right) 
+= \beta_0 + \beta_1 \cdot \text{DECK\_COND\_058} + \beta_2 \cdot \text{OPERATING\_RATING\_064} 
++ \beta_3 \cdot \text{YEAR\_BUILT\_027}
+$$
+
+The model above is a generalized linear model, as the response variable is non - normal ( Binomial), a normal linear model can not be used. The modification is done by using the logit link function. The regression coefficients will be found using a training subset of the data (80% of the rows), which will be found using the caret package. This will then allow us to test the prediction capabilities of our model using the remaining 20% of our data, the test data set. The prediction capabilites of this model were then tested using the predict function in R.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| results: hide
+options(digits = 4)
+Omaha <- fil_dat %>%
+  mutate(collapse_risk = ifelse(BRIDGE_CONDITION == "P" & STRUCTURAL_EVAL_067 <= 4, 1, 0)) %>%
+  select(c(1,8,12,18,26,31))
+
+library(VIM)
+one <- kNN(Omaha, k = 5)
+
+
+library(caret)
+train_indices <- createDataPartition(one$OBJECTID, 
+                                     p = 0.8, 
+                                     list = FALSE)
+
+train_data <- one[train_indices, ]
+
+# Testing data
+test_data <- one[-train_indices, ]
+
+
+# Logistic regression model
+model1 <- glm(collapse_risk ~as.numeric(DECK_COND_058) + OPERATING_RATING_064 + as.numeric(YEAR_BUILT_027), 
+             family = binomial(link = "logit"), data = train_data)
+
+library(gt)
+library(broom)
+
+tidy(model1) %>%
+  gt()
+```
+
+```{r}
+#| label: tbl-acur
+#| tbl-cap: "Accuracy of Regression Model"
+#| echo: false
+#| message: false
+#| warning: false
+options(digits = 4)
+predicted_probabilities <- predict(model1, newdata = test_data, type = "response")
+
+predicted_classes <- ifelse(predicted_probabilities > 0.5, 1, 0)
+
+prop_pred <- mean(predicted_classes)
+omaha_c <- mean(Omaha$collapse_risk)
+
+options(digits = 4)
+# Actual values
+actual_classes <- test_data$collapse_risk
+ # Compare predicted vs actual values
+comparison <- data.frame(Actual = actual_classes, Predicted = predicted_classes)
  
+accuracy <- mean(predicted_classes == actual_classes)
+kable(accuracy,col.names = c("Accuracy"))
+```
+
+From the model, when used in prediction on the test data set, the model predicts or analyzed that there is `r signif(100*prop_pred,3)` % of bridges that are at risk of collapse. This is very similar to the value from the overall data which was `r signif(100*omaha_c,3)` %. This shows the model is representative of the overall data set and the current condition, the final step is to test the accuracy of the model. @tbl-acur shows that the model has a `r signif(100*accuracy,3)`% accuracy in predicting the defined collapse risk variable. Which shows that it can be predicted with good accuracy if a bridge is at risk of collapse in Omaha,NE.
+
 ## Conclusion
+
+When looking back at the opening question, do you ever think of how stable a bridge is when you are driving over top of it, the answer would be hopefully not. This is because in the analysis we have found that `r signif(100*percents$bridges.at.risk,3)`% of the bridges in the Omaha,NE area have a bridge rating of "poor". This shows that in Omaha, NE if you took a random sample of 100 bridges, 5 would come out with a "poor" rating. This is a major issue highlighting the lack of infrastructure maintenance and repair in the country. This prompted further investigation using the National Bridge Inventory data set which lead to the creation of a collapse variable based on summary variables and the formation of a generalized linear model. The model estimated that `r signif(100*prop_pred,3)` % of bridges in Omaha are at risk of collapse. This is similar to what was found in the descriptive statistics and was predicted with a `r signif(100*accuracy,3)`% accuracy.
+
+Some issues that occur in the analysis is that there is no specifically defined criteria for if a bridge is going to collapse. This creates a issue when trying to predict or categorize if a bridge will collapse. This lead to the analyzing the descriptive statistics while also formulating a variable that categorized risk of collapse. This collapse variable was formed from two variables that were summary variables in themselves of bridge condition and structure. This lead to a variable that in many ways categorized the risk of collapse. Future implications of this research is using this model to further categorize bridges as at risk or needing attention. This will allow researchers to quickly evaluate if a bridge is in need of attention. Overall, the main product of this analysis is that bridges are not in good condition and money need to be allocated to help mend and fix bridges so that we do not have another collapse in a major city like the Francis Scott Key Bridge in Baltimore, MD.
