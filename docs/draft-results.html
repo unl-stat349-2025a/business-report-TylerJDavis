@@ -208,6 +208,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Analysis of Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project Description</span></a>
   </div>
@@ -262,7 +268,7 @@ window.Quarto = {
 
 <section id="descriptive-statistics" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="descriptive-statistics"><span class="header-section-number">3.1</span> Descriptive Statistics</h2>
-<p>The first step of the analysis was finding descriptive statistics of subsets of data. The subsets that were used are bridges in Omaha that are in poor condition along with bridges with high traffic in poor condition.</p>
+<p>The first step of the analysis was finding descriptive statistics of the two subsets of data. The subsets that were used are bridges in Omaha that are in poor condition and bridges with high traffic and poor condition.</p>
 <section id="descriptive-statistics-bridges-in-omaha-that-are-in-poor-condition" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="descriptive-statistics-bridges-in-omaha-that-are-in-poor-condition"><span class="header-section-number">3.1.1</span> Descriptive Statistics: Bridges in Omaha that are in Poor Condition</h3>
 <div class="cell">
@@ -475,7 +481,7 @@ Table&nbsp;3.2: High Traffic Bridges with Poor Rating
 </figure>
 </div>
 </div>
-<p>These bridges displayed in <a href="#tbl-bridge-stats1" class="quarto-xref">Table&nbsp;<span>3.2</span></a> are at risk of collapse and they also have the highest traffic flow among at risk bridges. These bridges are further at risk due to the fact that the mean average daily traffic is 38160 which is very high compared to most bridges in Omaha, NE. It can be shown form the descriptive statistics that the mean of the structural conditions is below 3 which is lower than if the bridges were at poor condition. It can also be seen that the average year built is slightly newer at 1969 than bridges that are not high traffic. Finally, it shows that median of the average number of lanes is 3.92 which is much higher than the previous subset. The next step is to look at the proportion of bridges in Omaha that have a poor condition and that have a poor condition under high traffic.</p>
+<p>These bridges displayed in <a href="#tbl-bridge-stats1" class="quarto-xref">Table&nbsp;<span>3.2</span></a> are at risk of collapse and they also have the highest traffic flow among at risk bridges. These bridges are further at risk due to the fact that the mean average daily traffic is 38160 which is very high compared to most bridges in Omaha, NE. It can be shown form the descriptive statistics that the mean of the structural conditions is below 3 which is lower than low traffic bridges. It can also be seen that the average year built is slightly newer at 1969 than bridges that are not high traffic. Finally, it shows that median of the average number of lanes is 3.92 which is much higher than the previous subset. The next step is to look at the proportion of bridges in Omaha that have a poor condition and that have a poor condition under high traffic.</p>
 </section>
 <section id="proportion-of-bridges-in-poor-condition" class="level3" data-number="3.1.3">
 <h3 data-number="3.1.3" class="anchored" data-anchor-id="proportion-of-bridges-in-poor-condition"><span class="header-section-number">3.1.3</span> Proportion of Bridges in Poor Condition</h3>
@@ -511,7 +517,7 @@ Table&nbsp;3.3: Proportion of Bridges at Risk in all of Omaha, NE
 </section>
 <section id="statistical-model-and-analysis" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="statistical-model-and-analysis"><span class="header-section-number">3.2</span> Statistical Model and Analysis</h2>
-<p>To do this task a collapse variable was created. This will be done by creating a binary variable that depends on if the bridge condition is poor and if the structural evaluation of the bridge in less than 4. These two variables give the best insight into if a bridge is at risk of collapse, hence they will be used to create the response variable for the model. The data that also contains many “NA” values, to take care of this issue the data will be imputed, or estimated values for the “NA” ’s will be formed based on information in the data set. The new imputed data set is what will be used to form the model <span class="citation" data-cites="littleMissingDataAssumptions2021">Little (<a href="references.html#ref-littleMissingDataAssumptions2021" role="doc-biblioref">2021</a>)</span>.<br>
+<p>To do this task a collapse variable was created. This will be done by creating a binary variable that depends on if the bridge condition is poor and if the structural evaluation of the bridge in less than 4. These two variables give the best insight into if a bridge is at risk of collapse, hence they will be used to create the response variable for the model. The data also contains many “NA” values, to take care of this issue the data will be imputed, or estimated values for the “NA” ’s will be formed based on information in the data set. The new imputed data set is what will be used to form the model, <span class="citation" data-cites="littleMissingDataAssumptions2021">Little (<a href="references.html#ref-littleMissingDataAssumptions2021" role="doc-biblioref">2021</a>)</span>.<br>
 </p>
 <section id="generalized-linear-model" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="generalized-linear-model"><span class="header-section-number">3.2.1</span> Generalized Linear Model</h3>
@@ -521,7 +527,7 @@ Table&nbsp;3.3: Proportion of Bridges at Risk in all of Omaha, NE
 = \beta_0 + \beta_1 \cdot \text{DECK\_COND\_058} + \beta_2 \cdot \text{OPERATING\_RATING\_064}
 + \beta_3 \cdot \text{YEAR\_BUILT\_027}
 \]</span></p>
-<p>The model above is a generalized linear model, as the response variable is non - normal ( Binomial), a normal linear model can not be used. The modification is done by using the logit link function. From this model the regression coefficient estimates will be obtained to use for prediction when the next bridge will collapse. The regression coefficients will be found using a training subset of the data (80% of the rows), which will be found using the caret package. This will then allow us to test the prediction capabilities of our model using the remaining 20% of our data, the test data set.</p>
+<p>The model above is a generalized linear model, as the response variable is non - normal (Binomial), a normal linear model can not be used. The modification is done by using the logit link function. From this model the regression coefficient estimates will be obtained to use for prediction when the next bridge will collapse. The regression coefficients will be found using a training subset of the data (80% of the rows), which will be found using the caret package. This will then allow us to test the prediction capabilities of our model using the remaining 20% of our data, the test data set.</p>
 <section id="coefficient-estimates" class="level4" data-number="3.2.1.1">
 <h4 data-number="3.2.1.1" class="anchored" data-anchor-id="coefficient-estimates"><span class="header-section-number">3.2.1.1</span> Coefficient Estimates</h4>
 <div class="cell">
@@ -532,23 +538,23 @@ Table&nbsp;3.4: Regression Model Summary
 </figcaption>
 <div aria-describedby="tbl-mod-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="rxgqdippnl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rxgqdippnl table {
+<div id="rllnmmjpmk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rllnmmjpmk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rxgqdippnl thead, #rxgqdippnl tbody, #rxgqdippnl tfoot, #rxgqdippnl tr, #rxgqdippnl td, #rxgqdippnl th {
+#rllnmmjpmk thead, #rllnmmjpmk tbody, #rllnmmjpmk tfoot, #rllnmmjpmk tr, #rllnmmjpmk td, #rllnmmjpmk th {
   border-style: none;
 }
 
-#rxgqdippnl p {
+#rllnmmjpmk p {
   margin: 0;
   padding: 0;
 }
 
-#rxgqdippnl .gt_table {
+#rllnmmjpmk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -574,12 +580,12 @@ Table&nbsp;3.4: Regression Model Summary
   border-left-color: #D3D3D3;
 }
 
-#rxgqdippnl .gt_caption {
+#rllnmmjpmk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rxgqdippnl .gt_title {
+#rllnmmjpmk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -591,7 +597,7 @@ Table&nbsp;3.4: Regression Model Summary
   border-bottom-width: 0;
 }
 
-#rxgqdippnl .gt_subtitle {
+#rllnmmjpmk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -603,7 +609,7 @@ Table&nbsp;3.4: Regression Model Summary
   border-top-width: 0;
 }
 
-#rxgqdippnl .gt_heading {
+#rllnmmjpmk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -615,13 +621,13 @@ Table&nbsp;3.4: Regression Model Summary
   border-right-color: #D3D3D3;
 }
 
-#rxgqdippnl .gt_bottom_border {
+#rllnmmjpmk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rxgqdippnl .gt_col_headings {
+#rllnmmjpmk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -636,7 +642,7 @@ Table&nbsp;3.4: Regression Model Summary
   border-right-color: #D3D3D3;
 }
 
-#rxgqdippnl .gt_col_heading {
+#rllnmmjpmk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -656,7 +662,7 @@ Table&nbsp;3.4: Regression Model Summary
   overflow-x: hidden;
 }
 
-#rxgqdippnl .gt_column_spanner_outer {
+#rllnmmjpmk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -668,15 +674,15 @@ Table&nbsp;3.4: Regression Model Summary
   padding-right: 4px;
 }
 
-#rxgqdippnl .gt_column_spanner_outer:first-child {
+#rllnmmjpmk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rxgqdippnl .gt_column_spanner_outer:last-child {
+#rllnmmjpmk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rxgqdippnl .gt_column_spanner {
+#rllnmmjpmk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -688,11 +694,11 @@ Table&nbsp;3.4: Regression Model Summary
   width: 100%;
 }
 
-#rxgqdippnl .gt_spanner_row {
+#rllnmmjpmk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rxgqdippnl .gt_group_heading {
+#rllnmmjpmk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -718,7 +724,7 @@ Table&nbsp;3.4: Regression Model Summary
   text-align: left;
 }
 
-#rxgqdippnl .gt_empty_group_heading {
+#rllnmmjpmk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -733,15 +739,15 @@ Table&nbsp;3.4: Regression Model Summary
   vertical-align: middle;
 }
 
-#rxgqdippnl .gt_from_md > :first-child {
+#rllnmmjpmk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rxgqdippnl .gt_from_md > :last-child {
+#rllnmmjpmk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rxgqdippnl .gt_row {
+#rllnmmjpmk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -760,7 +766,7 @@ Table&nbsp;3.4: Regression Model Summary
   overflow-x: hidden;
 }
 
-#rxgqdippnl .gt_stub {
+#rllnmmjpmk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -773,7 +779,7 @@ Table&nbsp;3.4: Regression Model Summary
   padding-right: 5px;
 }
 
-#rxgqdippnl .gt_stub_row_group {
+#rllnmmjpmk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -787,15 +793,15 @@ Table&nbsp;3.4: Regression Model Summary
   vertical-align: top;
 }
 
-#rxgqdippnl .gt_row_group_first td {
+#rllnmmjpmk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rxgqdippnl .gt_row_group_first th {
+#rllnmmjpmk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rxgqdippnl .gt_summary_row {
+#rllnmmjpmk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -805,16 +811,16 @@ Table&nbsp;3.4: Regression Model Summary
   padding-right: 5px;
 }
 
-#rxgqdippnl .gt_first_summary_row {
+#rllnmmjpmk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rxgqdippnl .gt_first_summary_row.thick {
+#rllnmmjpmk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rxgqdippnl .gt_last_summary_row {
+#rllnmmjpmk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -824,7 +830,7 @@ Table&nbsp;3.4: Regression Model Summary
   border-bottom-color: #D3D3D3;
 }
 
-#rxgqdippnl .gt_grand_summary_row {
+#rllnmmjpmk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -834,7 +840,7 @@ Table&nbsp;3.4: Regression Model Summary
   padding-right: 5px;
 }
 
-#rxgqdippnl .gt_first_grand_summary_row {
+#rllnmmjpmk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -844,7 +850,7 @@ Table&nbsp;3.4: Regression Model Summary
   border-top-color: #D3D3D3;
 }
 
-#rxgqdippnl .gt_last_grand_summary_row_top {
+#rllnmmjpmk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -854,11 +860,11 @@ Table&nbsp;3.4: Regression Model Summary
   border-bottom-color: #D3D3D3;
 }
 
-#rxgqdippnl .gt_striped {
+#rllnmmjpmk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rxgqdippnl .gt_table_body {
+#rllnmmjpmk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -867,7 +873,7 @@ Table&nbsp;3.4: Regression Model Summary
   border-bottom-color: #D3D3D3;
 }
 
-#rxgqdippnl .gt_footnotes {
+#rllnmmjpmk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -881,7 +887,7 @@ Table&nbsp;3.4: Regression Model Summary
   border-right-color: #D3D3D3;
 }
 
-#rxgqdippnl .gt_footnote {
+#rllnmmjpmk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -890,7 +896,7 @@ Table&nbsp;3.4: Regression Model Summary
   padding-right: 5px;
 }
 
-#rxgqdippnl .gt_sourcenotes {
+#rllnmmjpmk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -904,7 +910,7 @@ Table&nbsp;3.4: Regression Model Summary
   border-right-color: #D3D3D3;
 }
 
-#rxgqdippnl .gt_sourcenote {
+#rllnmmjpmk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -912,72 +918,72 @@ Table&nbsp;3.4: Regression Model Summary
   padding-right: 5px;
 }
 
-#rxgqdippnl .gt_left {
+#rllnmmjpmk .gt_left {
   text-align: left;
 }
 
-#rxgqdippnl .gt_center {
+#rllnmmjpmk .gt_center {
   text-align: center;
 }
 
-#rxgqdippnl .gt_right {
+#rllnmmjpmk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rxgqdippnl .gt_font_normal {
+#rllnmmjpmk .gt_font_normal {
   font-weight: normal;
 }
 
-#rxgqdippnl .gt_font_bold {
+#rllnmmjpmk .gt_font_bold {
   font-weight: bold;
 }
 
-#rxgqdippnl .gt_font_italic {
+#rllnmmjpmk .gt_font_italic {
   font-style: italic;
 }
 
-#rxgqdippnl .gt_super {
+#rllnmmjpmk .gt_super {
   font-size: 65%;
 }
 
-#rxgqdippnl .gt_footnote_marks {
+#rllnmmjpmk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rxgqdippnl .gt_asterisk {
+#rllnmmjpmk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rxgqdippnl .gt_indent_1 {
+#rllnmmjpmk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rxgqdippnl .gt_indent_2 {
+#rllnmmjpmk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rxgqdippnl .gt_indent_3 {
+#rllnmmjpmk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rxgqdippnl .gt_indent_4 {
+#rllnmmjpmk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rxgqdippnl .gt_indent_5 {
+#rllnmmjpmk .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rxgqdippnl .katex-display {
+#rllnmmjpmk .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rxgqdippnl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#rllnmmjpmk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -995,31 +1001,31 @@ Table&nbsp;3.4: Regression Model Summary
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="term">(Intercept)</td>
-<td class="gt_row gt_right" headers="estimate">65.13148</td>
-<td class="gt_row gt_right" headers="std.error">25.83204</td>
-<td class="gt_row gt_right" headers="statistic">2.521</td>
-<td class="gt_row gt_right" headers="p.value">1.169e-02</td>
+<td class="gt_row gt_right" headers="estimate">85.34249</td>
+<td class="gt_row gt_right" headers="std.error">27.41045</td>
+<td class="gt_row gt_right" headers="statistic">3.114</td>
+<td class="gt_row gt_right" headers="p.value">1.849e-03</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="term">as.numeric(DECK_COND_058)</td>
-<td class="gt_row gt_right" headers="estimate">-1.79890</td>
-<td class="gt_row gt_right" headers="std.error">0.29787</td>
-<td class="gt_row gt_right" headers="statistic">-6.039</td>
-<td class="gt_row gt_right" headers="p.value">1.549e-09</td>
+<td class="gt_row gt_right" headers="estimate">-1.75009</td>
+<td class="gt_row gt_right" headers="std.error">0.30765</td>
+<td class="gt_row gt_right" headers="statistic">-5.689</td>
+<td class="gt_row gt_right" headers="p.value">1.281e-08</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="term">OPERATING_RATING_064</td>
-<td class="gt_row gt_right" headers="estimate">-0.05867</td>
-<td class="gt_row gt_right" headers="std.error">0.01775</td>
-<td class="gt_row gt_right" headers="statistic">-3.305</td>
-<td class="gt_row gt_right" headers="p.value">9.512e-04</td>
+<td class="gt_row gt_right" headers="estimate">-0.06524</td>
+<td class="gt_row gt_right" headers="std.error">0.02022</td>
+<td class="gt_row gt_right" headers="statistic">-3.227</td>
+<td class="gt_row gt_right" headers="p.value">1.249e-03</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="term">as.numeric(YEAR_BUILT_027)</td>
-<td class="gt_row gt_right" headers="estimate">-0.02812</td>
-<td class="gt_row gt_right" headers="std.error">0.01340</td>
-<td class="gt_row gt_right" headers="statistic">-2.099</td>
-<td class="gt_row gt_right" headers="p.value">3.585e-02</td>
+<td class="gt_row gt_right" headers="estimate">-0.03839</td>
+<td class="gt_row gt_right" headers="std.error">0.01399</td>
+<td class="gt_row gt_right" headers="statistic">-2.745</td>
+<td class="gt_row gt_right" headers="p.value">6.057e-03</td>
 </tr>
 </tbody>
 </table>
@@ -1030,12 +1036,12 @@ Table&nbsp;3.4: Regression Model Summary
 </figure>
 </div>
 </div>
-<p><a href="#tbl-mod" class="quarto-xref">Table&nbsp;<span>3.4</span></a> shows that all variables are significant by having a p.value less than .05. This means that all of the coefficients will be included in the model for prediction. The prediction capabilities of the model were tested by using the predict function in R. This will allow an understanding of how good the model is at predicting the response variable, collapse risk, in the test data set.</p>
+<p><a href="#tbl-mod" class="quarto-xref">Table&nbsp;<span>3.4</span></a> shows that all variables are significant by having a p-value less than .05. This means that all of the coefficients will be included in the model for prediction. The prediction capabilities of the model were tested by using the predict function in R. This will allow an understanding of how good the model is at predicting the response variable, collapse risk, in the test data set.</p>
 </section>
 </section>
 <section id="prediction-and-model-accuracy" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="prediction-and-model-accuracy"><span class="header-section-number">3.2.2</span> Prediction and Model Accuracy</h3>
-<p>From the model, when used in prediction on the test data set, the model predicts or analyzed that there is 1.79 % of bridges that are at risk of collapse. This is very similar to the value from the overall data which was 4.13 %. This shows the model is representative of the overall data set and the current condition, the final step is to test the accuracy of the model.</p>
+<p>From the model, when used in prediction on the test data set, the model predicts or analyzed that there is 6.55 % of bridges that are at risk of collapse. This is very similar to the value from the overall data which was 4.13 %. This shows the model is representative of the overall data set and the current condition, the final step is to test the accuracy of the model.</p>
 <div class="cell">
 <div id="tbl-acur" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1052,7 +1058,7 @@ Table&nbsp;3.5: Accuracy of Regression Model
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0.9881</td>
+<td style="text-align: right;">0.9643</td>
 </tr>
 </tbody>
 </table>
@@ -1061,7 +1067,7 @@ Table&nbsp;3.5: Accuracy of Regression Model
 </figure>
 </div>
 </div>
-<p><a href="summary.html#tbl-acur" class="quarto-xref">Table&nbsp;<span>5.3</span></a> shows that the model has a 98.8% accuracy in predicting the defined collapse risk variable. Which shows that it can be predicted with good accuracy if a bridge is at risk of collapse in Omaha,NE.</p>
+<p><a href="summary.html#tbl-acur" class="quarto-xref">Table&nbsp;<span>5.3</span></a> shows that the model has a 96.4% accuracy in predicting the defined collapse risk variable. Which shows that it can be predicted with good accuracy if a bridge is at risk of collapse in Omaha,NE.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
