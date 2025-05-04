@@ -16,6 +16,7 @@ book:
     - references.qmd
   appendices:
     - draft-data-doc.qmd
+    - Analysis.qmd
     - index.qmd
 
 bibliography: references.bib

@@ -40,7 +40,7 @@ desc_h_t <- describe(high_traffic)
 
 ## Descriptive Statistics
 
-The first step of the analysis was finding descriptive statistics of subsets of data. The subsets that were used are bridges in Omaha that are in poor condition along with bridges with high traffic in poor condition.
+The first step of the analysis was finding descriptive statistics of the two subsets of data. The subsets that were used are bridges in Omaha that are in poor condition and bridges with high traffic and poor condition.
 
 ### Descriptive Statistics: Bridges in Omaha that are in Poor Condition
 
@@ -74,7 +74,7 @@ desc_h_t %>%
   kable()
 ```
 
-These bridges displayed in @tbl-bridge-stats1 are at risk of collapse and they also have the highest traffic flow among at risk bridges. These bridges are further at risk due to the fact that the mean average daily traffic is `r format(signif(desc_h_t$mean[3],4),scientific = FALSE)` which is very high compared to most bridges in Omaha, NE. It can be shown form the descriptive statistics that the mean of the structural conditions is below 3 which is lower than if the bridges were at poor condition. It can also be seen that the average year built is slightly newer at `r signif(desc_h_t$mean[1],4)` than bridges that are not high traffic. Finally, we can see that median of the average number of lanes is `r signif(desc_h_t$mean[2],3)` which is much higher than the previous subset. The next step is to look at the proportion of bridges in Omaha that have a poor condition and that have a poor condition under high traffic.
+These bridges displayed in @tbl-bridge-stats1 are at risk of collapse and they also have the highest traffic flow among at risk bridges. These bridges are further at risk due to the fact that the mean average daily traffic is `r format(signif(desc_h_t$mean[3],4),scientific = FALSE)` which is very high compared to most bridges in Omaha, NE. It can be shown form the descriptive statistics that the mean of the structural conditions is below 3 which is lower than low traffic bridges. It can also be seen that the average year built is slightly newer at `r signif(desc_h_t$mean[1],4)` than bridges that are not high traffic. Finally, it shows that median of the average number of lanes is `r signif(desc_h_t$mean[2],3)` which is much higher than the previous subset. The next step is to look at the proportion of bridges in Omaha that have a poor condition and that have a poor condition under high traffic.
 
 ### Proportion of Bridges in Poor Condition
 
@@ -95,7 +95,7 @@ kable(percents, col.names = c("Bridges at Risk", "High Traffic Bridges at Risk")
 
 ## Statistical Model and Analysis
 
-To do this task a collapse variable was created. This will be done by creating a binary variable that depends on if the bridge condition is poor and if the structural evaluation of the bridge in less than 4. These two variables give the best insight into if a bridge is at risk of collapse, hence they will be used to create the response variable for the model. The data that also contains many "NA" values, to take care of this issue the data will be imputed, or estimated values for the "NA" 's will be formed based on information in the data set. The new imputed data set is what will be used to form the model @littleMissingDataAssumptions2021.\
+To do this task a collapse variable was created. This will be done by creating a binary variable that depends on if the bridge condition is poor and if the structural evaluation of the bridge in less than 4. These two variables give the best insight into if a bridge is at risk of collapse, hence they will be used to create the response variable for the model. The data also contains many "NA" values, to take care of this issue the data will be imputed, or estimated values for the "NA" 's will be formed based on information in the data set. The new imputed data set is what will be used to form the model, @littleMissingDataAssumptions2021.\
 
 ### Generalized Linear Model
 
@@ -107,7 +107,7 @@ $$
 + \beta_3 \cdot \text{YEAR\_BUILT\_027}
 $$
 
-The model above is a generalized linear model, as the response variable is non - normal ( Binomial), a normal linear model can not be used. The modification is done by using the logit link function. From this model the regression coefficient estimates will be obtained to use for prediction when the next bridge will collapse. The regression coefficients will be found using a training subset of the data (80% of the rows), which will be found using the caret package. This will then allow us to test the prediction capabilities of our model using the remaining 20% of our data, the test data set.
+The model above is a generalized linear model, as the response variable is non - normal (Binomial), a normal linear model can not be used. The modification is done by using the logit link function. From this model the regression coefficient estimates will be obtained to use for prediction when the next bridge will collapse. The regression coefficients will be found using a training subset of the data (80% of the rows), which will be found using the caret package. This will then allow us to test the prediction capabilities of our model using the remaining 20% of our data, the test data set.
 
 #### Coefficient Estimates
 
@@ -149,7 +149,7 @@ tidy(model1) %>%
 
 ```
 
-@tbl-mod shows that all variables are significant by having a p.value less than .05. This means that all of the coefficients will be included in the model for prediction. The prediction capabilities of the model were tested by using the predict function in R. This will allow an understanding of how good the model is at predicting the response variable, collapse risk, in the test data set.
+@tbl-mod shows that all variables are significant by having a p-value less than .05. This means that all of the coefficients will be included in the model for prediction. The prediction capabilities of the model were tested by using the predict function in R. This will allow an understanding of how good the model is at predicting the response variable, collapse risk, in the test data set.
 
 ### Prediction and Model Accuracy
 

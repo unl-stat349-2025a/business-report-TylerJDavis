@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -200,13 +220,21 @@ ul.task-list li input[type="checkbox"] {
 <p>Description listed on website:</p>
 <p>“The National Bridge Inventory details bridges on public roads that include interstate highways, U.S. highways, state and county roads, and publicly accessible bridges located on Federal and Tribal lands. The database includes the location, description, classification, and condition of each bridge. The condition of the structural and bridge management elements of each bridge are cataloged for all bridges on the National Highway System (NHS).</p>
 <p>The NBI is published annually but its publication location varies. The 2024 (most recent) NBI is published with a map viewer as part of the Bureau of Transportation Statistics National Transportation Atlas Database. The data set is also published through FHWA’s Bridges &amp; Structures site.</p>
-<p>The National Bridge Inventory can support resilience analysis and detour planning efforts. It provides bridge location, design load and clearance, roadway geometry, rating, posting and structural evaluations, number of lanes, traffic counts, among other variables.” <span class="citation" data-cites="NationalBridgeInventory">(<a href="references.html#ref-NationalBridgeInventory" role="doc-biblioref"><strong>NationalBridgeInventory?</strong></a>)</span></p>
+<p>The National Bridge Inventory can support resilience analysis and detour planning efforts. It provides bridge location, design load and clearance, roadway geometry, rating, posting and structural evaluations, number of lanes, traffic counts, among other variables.” <span class="citation" data-cites="NationalBridgeInventory2024"><span>“National <span>Bridge Inventory</span> (<span>NBI</span>)”</span> (<a href="references.html#ref-NationalBridgeInventory2024" role="doc-biblioref">2024</a>)</span></p>
 <p>Detailed information:</p>
-<p>This data is located on a csv file in excel. It contains 116 variables describing various aspects of bridges. I will be focusing my analysis on variables 1,4,5,21, 28-29, 57 - 67,109,113-115. These variables and all information regarding analysis and coding can be found in the code book, <span class="citation" data-cites="wesemanRecordingCodingGuide">(<a href="references.html#ref-wesemanRecordingCodingGuide" role="doc-biblioref"><strong>wesemanRecordingCodingGuide?</strong></a>)</span>.</p>
+<p>This data is located on a csv file in excel. It contains 116 variables describing various aspects of bridges. I will be focusing my analysis on variables 1,4,5,21, 28-29, 57 - 67,109,113-115. These variables and all information regarding analysis and coding can be found in the code book, <span class="citation" data-cites="wesemanRecordingCodingGuide2023">Weseman (<a href="references.html#ref-wesemanRecordingCodingGuide2023" role="doc-biblioref">2023</a>)</span>.</p>
 <p>Process:</p>
 <p>This data will be used to analyze the question regarding the probability that a bridge will collapse in Omaha, NE. This is the reason certain variables will be analyzed and others will not be as much of a factor. The factors that I will use to make this decision will be location of bridge, amount of lanes, amount of traffic, bridge ratings, daily truck traffic, etc. All of this information and more can be found on the NBI website and data set.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-NationalBridgeInventory2024" class="csl-entry" role="listitem">
+<span>“National <span>Bridge Inventory</span> (<span>NBI</span>).”</span> 2024. https://tvar-hub-usdot.hub.arcgis.com/pages/national-bridge-inventory.
+</div>
+<div id="ref-wesemanRecordingCodingGuide2023" class="csl-entry" role="listitem">
+Weseman, William A. 2023. <span>“Recording and <span>Coding Guide</span>,”</span> January.
+</div>
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

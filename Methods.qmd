@@ -5,7 +5,7 @@ prefer-html: true
 
 ## Overview of Bridges in Omaha,NE
 
-When thinking about how to conduct the analysis on percent chance a bridge collapses in Omaha, NE, the first step is to find a data set that contains all of the information that is needed. Important information to answer this question would be, how the bridge is structurally, how old it is, and how much traffic the bridge has, for example. The data set that was found is the NTAD National Bridge Inventory, which contains a majority of the information stated above and much more. This data set, described in the data documentation, attempts to figure out the main question at hand what is the percent chance that a bridge will collapse in Omaha, NE. This data set was filtered to contain all bridges in Iowa and Nebraska by state code, it was then filtered again to focus in on the Omaha area. This was done by filter statements in the dyplr package in R, using state codes, latitudes, and longitudes. This subset of the NTAD data was then used for the analysis.
+When thinking about how to conduct the analysis on the percent chance a bridge collapses in Omaha, NE, the first step is to find a data set that contains all of the information that is needed. Important information to answer this question would be, how the bridge is structurally, how old it is, and how much traffic the bridge has. The data set that was found is the NTAD National Bridge Inventory, which contains a majority of the information stated above and much more. This data set, described in the data documentation, attempts to figure out the main question at hand, what is the percent chance that a bridge will collapse in Omaha, NE. This data set was filtered to contain all bridges in Iowa and Nebraska by state code, it was then filtered again to focus in on the Omaha area. This was done by filter statements in the dyplr package in R, using state codes, latitudes, and longitudes. This subset of the NTAD data was then used for the analysis.
 
 ```{r}
 #| echo: false
@@ -55,7 +55,7 @@ fil_dat <- omaha_bridges %>%
 
 ```
 
-There are 130 variables in the NTAD Bridge Inventory data set, some of variables that will be used are: bridge condition, substructure and superstructure condition, average daily traffic, and year built. These variables give a good picture of what it means to be a stable and healthy bridge and also what it means to be a bridge on the verge of collapse. Next the variable bridge condition was analyzed, which is a variable that describes the overall condition of the bridge, which has rating of "P" for poor, "G" for good, and "F" for fair. Bridge condition rating is determined by, " the lowest rating of National Bridge Inventory (NBI) condition ratings for Item 58 (Deck), Item 59 (Superstructure), Item 60 (Substructure), or Item 62 (Culvert). If the lowest rating is greater than or equal to 7, the bridge is classified as Good; if it is less than or equal to 4, the classification is Poor. Bridges rated 5 or 6 are classified as Fair.", @wesemanRecordingCodingGuide. This allows the analysis of the overall condition of the bridge by looking primarily at one variable to occur.
+There are 130 variables in the NTAD Bridge Inventory data set, some of variables that will be used are: bridge condition, substructure and superstructure condition, average daily traffic, and year built. These variables give a good picture of what it means to be a stable and healthy bridge and also what it means to be a bridge on the verge of collapse. Next, the variable bridge condition was analyzed, which is a variable that describes the overall condition of the bridge, which has rating of "P" for poor, "G" for good, and "F" for fair. Bridge condition rating is determined by, " the lowest rating of National Bridge Inventory (NBI) condition ratings for Item 58 (Deck), Item 59 (Superstructure), Item 60 (Substructure), or Item 62 (Culvert). If the lowest rating is greater than or equal to 7, the bridge is classified as Good; if it is less than or equal to 4, the classification is Poor. Bridges rated 5 or 6 are classified as Fair.", @wesemanRecordingCodingGuide. This allows the analysis of the overall condition of the bridge by looking primarily at one variable.
 
 ### Understanding Bridge Condition Variable
 
@@ -73,7 +73,7 @@ ggplot(fil_dat,aes(x = BRIDGE_CONDITION)) + geom_bar() + labs(title ="Bridge Con
 
 ```
 
-In @fig-omaha-brid we can see the overall breakdown of how the bridge condition variable. When first looking at this graph, it shows that a majority of the bridges in Omaha are in good or fair condition. Next, a closer look was taken into the bridges that have a poor rating.
+@fig-omaha-brid shows the overall breakdown of how the bridge condition variable. When first looking at this graph, it shows that a majority of the bridges in Omaha are in good or fair condition. Next, a closer look was taken into the bridges that have a poor rating.
 
 #### Bridges in Omaha that have a Rating of Poor
 
@@ -111,7 +111,7 @@ leaflet(bridge_cond) %>%
   )
 ```
 
-@fig-omaha-map above shows the distribution of bridges across Omaha, NE, that have a bridge condition rating of poor. This gives a good understanding of the bridges at most risk of collapse right now. @fig-omaha-map shows that some of the bridges that are at most risk of collapse are in downtown Omaha, which could lead to major economic and logistical issues. The economic impact of a bridge collapse is important for one to consider as it can impact the severity of the incident. Another factor that might play a role on if a bridge collapses would be how much traffic a bridge takes in per day. Another subset of data was created from the bridges that have poor condition, and added that the average daily traffic must be greater than 5,000 cars and that is must have over two lanes. This will give a good picture of major bridges in Omaha, NE that are at risk of collapse that could impact that most people.
+@fig-omaha-map above shows the distribution of bridges across Omaha, NE, that have a bridge condition rating of poor. This gives a good understanding of the bridges at most risk of collapse right now. @fig-omaha-map shows that some of the bridges that are at most risk of collapse are in downtown Omaha, which could lead to major economic and logistical issues. The economic impact of a bridge collapse is important for one to consider as it can impact the severity of the incident. Another factor that might play a role on if a bridge collapses would be how much traffic a bridge takes in per day. Another subset of data was created from the bridges that have poor condition. This subset added that the average daily traffic must be greater than 5,000 cars per day and that it must have over two lanes. This will give a good picture of major bridges in Omaha, NE that are at risk of collapse that could impact that most people.
 
 #### Bridges in Omaha that have a Rating of Poor and have High Traffic
 
