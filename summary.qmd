@@ -128,7 +128,7 @@ kable(percents, col.names = c("Bridges at Risk", "High Traffic Bridges at Risk")
 The model is the following:
 
 $$
-\log\left( \frac{P(\text{collapse\_risk} = 1)}{1 - P(\text{collapse\_risk} = 1)} \right) 
+\small\log\left( \frac{P(\text{collapse\_risk} = 1)}{1 - P(\text{collapse\_risk} = 1)} \right) 
 = \beta_0 + \beta_1 \cdot \text{DECK\_COND\_058} + \beta_2 \cdot \text{OPERATING\_RATING\_064} 
 + \beta_3 \cdot \text{YEAR\_BUILT\_027}
 $$
